@@ -1,5 +1,8 @@
 # sidescroller
 
+## Usage
+
+Run `./app/main.py`
 
 ## TODO
 
