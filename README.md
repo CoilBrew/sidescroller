@@ -9,6 +9,7 @@ Run `./app/main.py`
 - Create obstacles
 - Create player
 - Creater wall
+- Create floor
 - Player movement
 - Wall movement
 - Collision detection
