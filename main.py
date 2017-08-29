@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import pygame, sys
-import src.Floor
+#import src.Floor
 from pygame.locals import *
 
 pygame.init()
