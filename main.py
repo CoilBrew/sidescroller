@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import pygame
-
+import src.Floor
 
 pygame.init()
 
@@ -19,4 +19,3 @@ display = pygame.display.set_mode((width, height))
 
 while True:
     pygame.display.update()
-import src.Floor
