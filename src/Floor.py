@@ -9,6 +9,6 @@ class Floor(object):
         """Segments is a list of segments"""
         pass # TODO
 
-    def draw():
+    def draw(self):
         """Creates the floor as a rectangle"""
         pass # TODO
