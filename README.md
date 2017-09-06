@@ -14,3 +14,4 @@ Run `./app/main.py`
 - Wall movement
 - Collision detection
 - Add music
+- Make settings configurable

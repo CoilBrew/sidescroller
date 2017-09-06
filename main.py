@@ -1,16 +1,24 @@
 #!/usr/bin/env python3
-import pygame, sys
+import pygame, sys, json
 #import src.Floor
 from pygame.locals import *
 
 pygame.init()
-info = pygame.display.Info()
-width = info.current_w # Width is the width of the screen
-height = int((info.current_h / 2)) # Height is the screen height divided byß 2
+INFO = pygame.display.Info()
 
-display = pygame.display.set_mode((width, height))
+# Settings
+settings = json.load(open("./settings.json"))
+FPS = settings["FPS"]
 
-FPS = 60
+# Set the resolution settings
+if settings["resolution"] == "dynamic":
+    WIDTH = INFO.current_w # Width is the width of the screen
+    HEIGHT = int((INFO.current_h / 2)) # Height is the screen height divided by 2
+else:
+    WIDTH = settings["resolution"]["width"] # Width is the width of the screen
+    HEIGHT = settings["resolution"]["height"] # Height is the screen height divided by 2
+
+display = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Game loop
 while True:
