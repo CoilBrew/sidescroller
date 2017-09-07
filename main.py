@@ -6,13 +6,14 @@ from pygame.locals import *
 def main():
     pygame.init()
     INFO = pygame.display.Info()
+    clock = pygame.time.Clock()
 
     # Settings
     settings = json.load(open("./settings.json"))
     FPS = settings["FPS"]
 
     # Set the resolution settings
-    if settings["resolution"] == "dynamic":
+    if settings["resolution"]["dynamic"] == True:
         WIDTH = INFO.current_w # Width is the width of the screen
         HEIGHT = int((INFO.current_h / 2)) # Height is the screen height divided by 2
     else:
@@ -30,8 +31,11 @@ def main():
                 sys.exit()
 
         pygame.display.update()
-        pygame.time.Clock().tick() # You can pass a framerate to tick(), limiting the game to that framework
+        # Each frame call tick()
+        clock.tick() # You can pass a framerate to tick(), limiting the game to that framework
         # If you want unlimited frames, then pass nothing in
+
+        print("FPS: ", clock.get_fps())
 
 if __name__ == "__main__":
     main()
