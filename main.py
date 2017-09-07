@@ -30,7 +30,8 @@ def main():
                 sys.exit()
 
         pygame.display.update()
-        pygame.time.Clock().tick(FPS)
+        pygame.time.Clock().tick() # You can pass a framerate to tick(), limiting the game to that framework
+        # If you want unlimited frames, then pass nothing in
 
 if __name__ == "__main__":
     main()
