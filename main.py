@@ -35,7 +35,7 @@ def main():
         clock.tick() # You can pass a framerate to tick(), limiting the game to that framework
         # If you want unlimited frames, then pass nothing in
 
-        print("FPS: ", clock.get_fps())
+        print("FPS: ", round(clock.get_fps(), 2))
 
 if __name__ == "__main__":
     main()
