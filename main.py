@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import pygame, sys, json
-#import src.Floor
 from pygame.locals import *
+from src.Event import * 
 
 def main():
     pygame.init()
@@ -21,14 +21,13 @@ def main():
 
     display = pygame.display.set_mode((WIDTH, HEIGHT))
 
+    event = Event() # Initialise the event handler
+
     # Game loop
     while True:
-        # Event loop
-        for e in pygame.event.get():
-            if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
-                pygame.quit()
-                sys.exit()
-
+        event.update(pygame.event.get())
+        
+        # Update the screen
         pygame.display.update()
         pygame.time.Clock().tick(FPS)
 
