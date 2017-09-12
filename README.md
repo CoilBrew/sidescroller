@@ -1,10 +1,15 @@
 # sidescroller
 
+
 ## Usage
 
-Run `./app/main.py`
+Run
+
+1. `pip3 install -r requirements` to install the dependencies
+2. `./app/main.py` to run the game
 
 ## TODO
+
 
 ### v1
 
