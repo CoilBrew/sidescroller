@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import pygame, sys, json
 from pygame.locals import *
-from src.Event import * 
+from src.Event import *
 
 def main():
     pygame.init()
