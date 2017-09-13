@@ -4,6 +4,7 @@ class Player(object):
         # create base_velocity
         # create health
         # create image/asset
+        # create position
 
     def move(self, direction):
         """Takes a character representing the direction of movement"""
