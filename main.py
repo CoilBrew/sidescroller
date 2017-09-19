@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import pygame, sys, json
 from pygame.locals import *
+# Misc
 from random import randint
+from colours import *
 # Classes
 from src.Event import *
 from src.Wall import *
