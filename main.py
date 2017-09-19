@@ -35,8 +35,19 @@ def main():
     DISPLAY.blit(burritoMan, (STARTX, STARTY)) #Display burritoman at the starting co-ordinates
     direction = "r" #Set initial direction to right - temporary
 
+    # This is the list of objects that will be updated on frame redraw, initalise it here
+    seqUpdate = pygame.sprite.RenderUpdates()
+
+    DISPLAY.fill((0, 0, 0))
     # Game loop
     while True:
+        # For everything in the RenderUpdates group (seqUpdate):
+        #   1. Erase all sprites with cover
+        #   2. Redraw them
+        cover = (0, 0, 0)
+        seqUpdate.clear(DISPLAY, cover)
+        seqUpdate.draw(DISPLAY)
+
         event.update(pygame.event.get())
 
         if direction == "l":
@@ -69,8 +80,12 @@ def main():
         #This bit below is really bad, need to get rid of the old image rather than just loading it again
         DISPLAY.blit(burritoMan, (STARTX, STARTY))  #After moving, reload the image at new position
 
+        rect_list = seqUpdate.draw(DISPLAY) # This returns a rect_list to be passed into update()
         # Update the screen
-        pygame.display.update() # We will want to pass only those things that change into this method
+        # This one won't work until our classes are subclasses of Sprite classes
+        #pygame.display.update(rect_list) # We will want to pass only those things that change into this method
+        # For now use:
+        pygame.display.update()
         # Each frame call tick()
         clock.tick() # You can pass a framerate to tick(), limiting the game to that framework
         # If you want unlimited frames, then pass nothing in
