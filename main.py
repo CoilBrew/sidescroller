@@ -31,7 +31,7 @@ def main():
 
     STARTX = 0.5*WIDTH #Starting location is in the middle (x axis)
     STARTY = 0.75*HEIGHT #Starting location is 25% up from bottom
-    burritoMan = pygame.image.load('burrito.bmp') #Assign the character image to burritoMan
+    burritoMan = pygame.image.load('assets/burrito.bmp') #Assign the character image to burritoMan
     DISPLAY.blit(burritoMan, (STARTX, STARTY)) #Display burritoman at the starting co-ordinates
     direction = "r" #Set initial direction to right - temporary
 
