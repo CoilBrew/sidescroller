@@ -1,7 +1,7 @@
 {
     "FPS": 60,
     "resolution": {
-        "dynamic": true,
+        "dynamic": false,
         "width": 1080,
         "height": 720
     }
