@@ -9,6 +9,7 @@ class Wall(pygame.sprite.Sprite):
         """
         self.abs_pos = 0
         self.velocity = 5
+        self.display = display
 
     def move(self):
         """Update the wall's absolute position"""

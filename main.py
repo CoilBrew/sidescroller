@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 import pygame, sys, json
 from pygame.locals import *
-from src.Event import *
 from random import randint
+# Classes
+from src.Event import *
+from src.Wall import *
 
 def main():
     pygame.init()
@@ -24,6 +26,7 @@ def main():
     DISPLAY = pygame.display.set_mode((WIDTH, HEIGHT))
 
     event = Event() # Initialise the event handler
+    wall = Wall(DISPLAY) # Initialise the wall
 
     # Below can be moved/deleted if neccessary; just wanted something to appear on screen
     # This is the floor going the full width of the screen 20% of the way up the screen, (100,244,66) is RGB colour
@@ -39,6 +42,12 @@ def main():
     seqUpdate = pygame.sprite.RenderUpdates()
 
     DISPLAY.fill((0, 0, 0))
+    
+    # Create groups
+    #a = pygame.Sprite.Group()
+    # Assign to groups
+    #Player.containers = a
+
     # Game loop
     while True:
         # For everything in the RenderUpdates group (seqUpdate):
@@ -90,6 +99,10 @@ def main():
         clock.tick() # You can pass a framerate to tick(), limiting the game to that framework
         # If you want unlimited frames, then pass nothing in
 
+        wall.move()
+        # Debugging
+        print("\n###Debugging###")
+        print("Wall position: " + str(wall.abs_pos))
         print("FPS: ", round(clock.get_fps(), 2))
 
 if __name__ == "__main__":
