@@ -70,7 +70,7 @@ def main():
         DISPLAY.blit(burritoMan, (STARTX, STARTY))  #After moving, reload the image at new position
 
         # Update the screen
-        pygame.display.update()
+        pygame.display.update() # We will want to pass only those things that change into this method
         # Each frame call tick()
         clock.tick() # You can pass a framerate to tick(), limiting the game to that framework
         # If you want unlimited frames, then pass nothing in
