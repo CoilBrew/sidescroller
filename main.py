@@ -7,6 +7,8 @@ from colours import *
 # Classes
 from src.Event import *
 from src.Wall import *
+from src.Universe import *
+from src.Floor import *
 
 def main():
     pygame.init()
@@ -44,7 +46,7 @@ def main():
     seqUpdate = pygame.sprite.RenderUpdates()
 
     DISPLAY.fill((0, 0, 0))
-    
+
     # Create groups
     #a = pygame.Sprite.Group()
     # Assign to groups
