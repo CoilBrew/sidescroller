@@ -4,8 +4,10 @@ class Player(object):
         # create base_velocity
         # create health
         # create image/asset
+        self.position = 0
 
-        # The below commented out stuff was just me playing around - haven't spent any time trying to make it work and i don't think the syntax is correct
+        # The below commented out stuff was just me playing around - haven't spent any time trying to make it work and i don't think the syntax is correct (LEE?)
+        # All this stuff lives in main.py... for now (ADAM)
         # STARTX = 0.5*WIDTH
         # STARTY = 0.75*HEIGHT
         # self.burritoMan = pygame.image.load('burrito.png')
@@ -13,11 +15,13 @@ class Player(object):
 
     def move(self, direction):
         """Takes a character representing the direction of movement"""
-        if direction == "l":
+        if direction == "A":
             # move left
-        elif direction == "r":
+            self.position == self.position - 10
+        elif direction == "D":
             # move right
-        elif direction == "u":
-            # move up
+            self.position == self.position + 10
+        # elif direction == "u":
+        #     # move up
         else:
             print("Error")

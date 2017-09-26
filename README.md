@@ -18,7 +18,7 @@ Run
 - Create some assets (player, wall)
 - Create obstacles
 - Create skeleton player class
-- Creater skeleton wall class
+- Create skeleton wall class
 - Create floor class
 - Write method for Player movement (left and right) on key input
 - Write method for Player movement (up/jump) on key input
