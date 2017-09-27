@@ -1,5 +1,3 @@
-
-
 class Floor(Universe):
     """This class defines the floor"""
     def __init__(self, display, level):

@@ -6,7 +6,7 @@ from random import randint
 
 class BurritoMan(pygame.sprite.Sprite):
     def __init__(self): #Constructor
-        self.image = pygame.image.load('burrito.bmp')
+        self.image = pygame.image.load('assets/burrito.bmp')
         self.x = startx
         self.y = starty
 
