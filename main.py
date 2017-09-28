@@ -47,7 +47,7 @@ def main():
     # This is the list of objects that will be updated on frame redraw, initalise it here
     seqUpdate = pygame.sprite.RenderUpdates()
 
-    DISPLAY.fill((0, 0, 0))
+    DISPLAY.fill(BLACK)
 
     # Create groups
     #a = pygame.Sprite.Group()
