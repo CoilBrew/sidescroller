@@ -50,10 +50,9 @@ def main():
     # Game loop
     while True:
         # For everything in the RenderUpdates group (seqUpdate):
-        #   1. Erase all sprites with cover
+        #   1. Erase all sprites with color
         #   2. Redraw them
-        cover = (0, 0, 0)
-        seqUpdate.clear(DISPLAY, cover)
+        seqUpdate.clear(DISPLAY, BLACK)
         seqUpdate.draw(DISPLAY)
 
         event.update(pygame.event.get())
