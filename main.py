@@ -67,8 +67,7 @@ def main():
         # For now use:
         pygame.display.update()
         # Each frame call tick()
-        clock.tick() # You can pass a framerate to tick(), limiting the game to that framework
-        # If you want unlimited frames, then pass nothing in
+        clock.tick() # opt arg: limit framerate; otherwise, unlimited
 
         wall.move()
         player.move()
