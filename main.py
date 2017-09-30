@@ -8,6 +8,7 @@ from colours import *
 from src.Event import *
 from src.Wall import *
 from src.Universe import *
+from src.Settings import *
 #from src.Floor import *
 from src.Player import *
 
@@ -18,21 +19,15 @@ def main():
     pygame.display.set_caption('Burrito Man')
 
     # Settings
-    settings = json.load(open("./settings.json"))
-    FPS = settings["FPS"]
+    settings = Settings()
+    FPS = settings.fps
+    width = settings.width
+    height = settings.height
 
-    # Set the resolution settings
-    if settings["resolution"]["dynamic"] == True:
-        WIDTH = INFO.current_w # Width is the width of the screen
-        HEIGHT = int((INFO.current_h / 2)) # Height is the screen height divided by 2
-    else:
-        WIDTH = settings["resolution"]["width"] # Width is the width of the screen
-        HEIGHT = settings["resolution"]["height"] # Height is the screen height divided by 2
+    DISPLAY = pygame.display.set_mode((width, height))
 
-    DISPLAY = pygame.display.set_mode((WIDTH, HEIGHT))
-
-    STARTX = 0.5*WIDTH #Starting location is in the middle (x axis)
-    STARTY = 0.75*HEIGHT #Starting location is 25% up from bottom
+    STARTX = 0.5 * width #Starting location is in the middle (x axis)
+    STARTY = 0.75 * height #Starting location is 25% up from bottom
     burritoMan = pygame.image.load('assets/burrito.bmp') #Assign the character image to burritoMan
     DISPLAY.blit(burritoMan, (STARTX, STARTY)) #Display burritoman at the starting co-ordinates
 
@@ -42,7 +37,7 @@ def main():
 
     # Below can be moved/deleted if neccessary; just wanted something to appear on screen
     # This is the floor going the full width of the screen 20% of the way up the screen, (100,244,66) is RGB colour
-    pygame.draw.rect(DISPLAY, (100, 244, 66), (0, 0.8*HEIGHT, WIDTH, 5))
+    pygame.draw.rect(DISPLAY, (100, 244, 66), (0, 0.8 * height, width, 5))
 
     # This is the list of objects that will be updated on frame redraw, initalise it here
     seqUpdate = pygame.sprite.RenderUpdates()
