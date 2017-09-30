@@ -3,7 +3,7 @@ import pygame, sys, json
 from pygame.locals import *
 # Misc
 from random import randint
-from colours import *
+from src.colours import *
 # Classes
 from src.Event import *
 from src.Wall import *
