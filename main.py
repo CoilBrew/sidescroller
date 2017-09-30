@@ -19,8 +19,7 @@ def main():
 
     # Settings
     settings = Settings()
-    width = settings.width
-    height = settings.height
+    width, height = settings.width, settings.height
 
     display = pygame.display.set_mode((width, height))
 
