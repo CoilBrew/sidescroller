@@ -32,6 +32,7 @@ def main():
     event = Event() # Initialise the event handler
     wall = Wall(display) # Initialise the wall
     player = Player(STARTX) # Initialise the player
+    # floor = Floor(display, level) 
 
     # This is the floor going the full width of the screen 20% of the way up the screen, (100,244,66) is RGB colour
     pygame.draw.rect(display, (100, 244, 66), (0, 0.8 * height, width, 5))
