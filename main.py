@@ -22,25 +22,24 @@ def main():
     width = settings.width
     height = settings.height
 
-    DISPLAY = pygame.display.set_mode((width, height))
+    display = pygame.display.set_mode((width, height))
 
     STARTX = 0.5 * width #Starting location is in the middle (x axis)
     STARTY = 0.75 * height #Starting location is 25% up from bottom
     burritoMan = pygame.image.load('assets/burrito.bmp') #Assign the character image to burritoMan
-    DISPLAY.blit(burritoMan, (STARTX, STARTY)) #Display burritoman at the starting co-ordinates
+    display.blit(burritoMan, (STARTX, STARTY)) #Display burritoman at the starting co-ordinates
 
     event = Event() # Initialise the event handler
-    wall = Wall(DISPLAY) # Initialise the wall
+    wall = Wall(display) # Initialise the wall
     player = Player(STARTX) # Initialise the player
 
-    # Below can be moved/deleted if neccessary; just wanted something to appear on screen
     # This is the floor going the full width of the screen 20% of the way up the screen, (100,244,66) is RGB colour
-    pygame.draw.rect(DISPLAY, (100, 244, 66), (0, 0.8 * height, width, 5))
+    pygame.draw.rect(display, (100, 244, 66), (0, 0.8 * height, width, 5))
 
     # This is the list of objects that will be updated on frame redraw, initalise it here
     seqUpdate = pygame.sprite.RenderUpdates()
 
-    DISPLAY.fill(BLACK)
+    display.fill(BLACK)
 
     # Create groups
     #a = pygame.Sprite.Group()
@@ -52,15 +51,15 @@ def main():
         # For everything in the RenderUpdates group (seqUpdate):
         #   1. Erase all sprites with color
         #   2. Redraw them
-        seqUpdate.clear(DISPLAY, BLACK)
-        seqUpdate.draw(DISPLAY)
+        seqUpdate.clear(display, BLACK)
+        seqUpdate.draw(display)
 
         event.update(pygame.event.get())
 
         #This bit below is really bad, need to get rid of the old image rather than just loading it again
-        DISPLAY.blit(burritoMan, (STARTX, STARTY))  #After moving, reload the image at new position
+        display.blit(burritoMan, (STARTX, STARTY))  #After moving, reload the image at new position
 
-        rect_list = seqUpdate.draw(DISPLAY) # This returns a rect_list to be passed into update()
+        rect_list = seqUpdate.draw(display) # This returns a rect_list to be passed into update()
         # Update the screen
         # This one won't work until our classes are subclasses of Sprite classes
         #pygame.display.update(rect_list) # We will want to pass only those things that change into this method
