@@ -14,13 +14,11 @@ from src.Player import *
 
 def main():
     pygame.init()
-    INFO = pygame.display.Info()
     clock = pygame.time.Clock()
     pygame.display.set_caption('Burrito Man')
 
     # Settings
     settings = Settings()
-    FPS = settings.fps
     width = settings.width
     height = settings.height
 
