@@ -49,8 +49,7 @@ def main():
     # Game loop
     while True:
         # For everything in the RenderUpdates group (seqUpdate):
-        #   1. Erase all sprites with color
-        #   2. Redraw them
+        #   1. Erase all sprites with color; 2. Redraw them
         seqUpdate.clear(display, BLACK)
         seqUpdate.draw(display)
 
