@@ -59,6 +59,10 @@ def main():
         display.blit(burritoMan, (STARTX, STARTY))  #After moving, reload the image at new position
 
         rect_list = seqUpdate.draw(display) # This returns a rect_list to be passed into update()
+
+        wall.move()
+        player.move()
+
         # Update the screen
         # This one won't work until our classes are subclasses of Sprite classes
         #pygame.display.update(rect_list) # We will want to pass only those things that change into this method
@@ -66,9 +70,7 @@ def main():
         pygame.display.update()
         # Each frame call tick()
         clock.tick() # opt arg: limit framerate; otherwise, unlimited
-
-        wall.move()
-        player.move()
+        
         # Debugging
         print("\n###Debugging###")
         print("Wall position: " + str(wall.abs_pos))
