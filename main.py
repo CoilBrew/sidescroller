@@ -12,6 +12,9 @@ from src.Settings import *
 #from src.Floor import *
 from src.Player import *
 
+def debug_statement(msg, args):
+    print (msg + ": " + str(args))
+
 def main():
     pygame.init()
     clock = pygame.time.Clock()
@@ -73,9 +76,9 @@ def main():
         
         # Debugging
         print("\n###Debugging###")
-        print("Wall position: " + str(wall.abs_pos))
-        print("FPS: ", round(clock.get_fps(), 2))
-        print("Player position: " + str(player.position))
+        debug_statement("Wall position", wall.abs_pos)
+        debug_statement("FPS", round(clock.get_fps()))
+        debug_statement("Player position", player.position)
 
 if __name__ == "__main__":
     main()
