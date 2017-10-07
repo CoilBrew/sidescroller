@@ -11,6 +11,7 @@ from src.Universe import *
 from src.Settings import *
 from src.Floor import *
 from src.Player import *
+from src.Obstacle import *
 
 def debug_statement(msg, args):
     print(msg + ": " + str(args))
@@ -23,6 +24,7 @@ def main():
     # Settings
     settings = Settings()
     width, height = settings.width, settings.height
+    floor_height = height * settings.floor_height_percentage
 
     display = pygame.display.set_mode((width, height))
 
@@ -34,11 +36,7 @@ def main():
     wall = Wall(display) # Initialise the wall
     player = Player(STARTX) # Initialise the player
     level = 100
-    floor_height = height * settings.floor_height_percentage
-    floor = Floor(display, level, width, floor_height) 
-
-    # This is the floor going the full width of the screen 20% of the way up the screen, (100,244,66) is RGB colour
-    pygame.draw.rect(display, (100, 244, 66), (0, 0.8 * height, width, 5))
+    floor = Floor(display, level, width, height, floor_height) 
 
     # This is the list of objects that will be updated on frame redraw, initalise it here
     seqUpdate = pygame.sprite.RenderUpdates()
@@ -49,7 +47,7 @@ def main():
     #a = pygame.Sprite.Group()
     # Assign to groups
     #Player.containers = a
-
+    obstacle = Obstacle(display, width, height)
     # Game loop
     while True:
         # For everything in the RenderUpdates group (seqUpdate):
@@ -67,6 +65,7 @@ def main():
         wall.move()
         player.move()
         floor.draw()
+        obstacle.draw()
 
         # Update the screen
         # This one won't work until our classes are subclasses of Sprite classes
