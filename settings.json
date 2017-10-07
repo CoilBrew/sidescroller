@@ -3,5 +3,6 @@
     "resolution": {
         "width": 1080,
         "height": 720
-    }
+    },
+    "floor_height_percentage": 0.75
 }

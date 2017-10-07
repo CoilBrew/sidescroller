@@ -9,11 +9,11 @@ from src.Event import *
 from src.Wall import *
 from src.Universe import *
 from src.Settings import *
-#from src.Floor import *
+from src.Floor import *
 from src.Player import *
 
 def debug_statement(msg, args):
-    print (msg + ": " + str(args))
+    print(msg + ": " + str(args))
 
 def main():
     pygame.init()
@@ -29,12 +29,13 @@ def main():
     STARTX = 0.5 * width #Starting location is in the middle (x axis)
     STARTY = 0.75 * height #Starting location is 25% up from bottom
     burritoMan = pygame.image.load('assets/burrito.bmp') #Assign the character image to burritoMan
-    display.blit(burritoMan, (STARTX, STARTY)) #Display burritoman at the starting co-ordinates
 
     event = Event() # Initialise the event handler
     wall = Wall(display) # Initialise the wall
     player = Player(STARTX) # Initialise the player
-    # floor = Floor(display, level) 
+    level = 100
+    floor_height = height * settings.floor_height_percentage
+    floor = Floor(display, level, width, floor_height) 
 
     # This is the floor going the full width of the screen 20% of the way up the screen, (100,244,66) is RGB colour
     pygame.draw.rect(display, (100, 244, 66), (0, 0.8 * height, width, 5))
@@ -65,6 +66,7 @@ def main():
 
         wall.move()
         player.move()
+        floor.draw()
 
         # Update the screen
         # This one won't work until our classes are subclasses of Sprite classes
