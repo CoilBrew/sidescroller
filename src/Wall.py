@@ -8,7 +8,7 @@ class Wall(pygame.sprite.Sprite):
         velocity is the rate at which the wall moves to the right, in absolute terms
         """
         self.abs_pos = 0
-        self.velocity = 5
+        self.velocity = 0.25
         self.display = display
 
     def move(self):

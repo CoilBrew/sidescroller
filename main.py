@@ -43,31 +43,26 @@ def main():
 
     display.fill(BLACK)
 
-    # Create groups
-    #a = pygame.Sprite.Group()
-    # Assign to groups
-    #Player.containers = a
+    # Create groups: a = pygame.Sprite.Group()
+    # Assign to groups: Player.containers = a
     obstacle = Obstacle(display, width, height)
     # Game loop
     while True:
         # For everything in the RenderUpdates group (seqUpdate):
         #   1. Erase all sprites with color; 2. Redraw them
         seqUpdate.clear(display, BLACK)
-        seqUpdate.draw(display)
+        rect_list = seqUpdate.draw(display) # This returns a rect_list to be passed into update()
 
         event.update(pygame.event.get())
 
         #This bit below is really bad, need to get rid of the old image rather than just loading it again
         display.blit(burritoMan, (STARTX, STARTY))  #After moving, reload the image at new position
 
-        rect_list = seqUpdate.draw(display) # This returns a rect_list to be passed into update()
-
         wall.move()
         player.move()
         floor.draw()
         obstacle.draw()
 
-        # Update the screen
         # This one won't work until our classes are subclasses of Sprite classes
         #pygame.display.update(rect_list) # We will want to pass only those things that change into this method
         # For now use:
@@ -77,8 +72,8 @@ def main():
         
         # Debugging
         print("\n###Debugging###")
-        debug_statement("Wall position", wall.abs_pos)
         debug_statement("FPS", round(clock.get_fps()))
+        debug_statement("Wall position", wall.abs_pos)
         debug_statement("Player position", player.position)
 
 if __name__ == "__main__":
