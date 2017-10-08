@@ -16,10 +16,10 @@ Run
 
 - ~~Make settings configurable~~
 - Create some assets (player, wall)
-- Create obstacles
-- Create skeleton player class
-- Create skeleton wall class
-- Create floor class
+- ~~Create obstacles~~
+- ~~Create skeleton player class~~
+- ~~Create skeleton wall class~~
+- ~~Create floor class~~
 - Write method for Player movement (left and right) on key input
 - Write method for Player movement (up/jump) on key input
 - Write method for wall movement (at some constant rate)
