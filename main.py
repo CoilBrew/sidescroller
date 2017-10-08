@@ -33,7 +33,7 @@ def main():
     burritoMan = pygame.image.load('assets/burrito.bmp') #Assign the character image to burritoMan
 
     event = Event() # Initialise the event handler
-    wall = Wall(display) # Initialise the wall
+    wall = Wall(display, width, height) # Initialise the wall
     player = Player(STARTX) # Initialise the player
     level = 100
     floor = Floor(display, level, width, height, floor_height) 
@@ -48,6 +48,7 @@ def main():
     obstacle = Obstacle(display, width, height)
     # Game loop
     while True:
+        display.fill(BLACK)
         # For everything in the RenderUpdates group (seqUpdate):
         #   1. Erase all sprites with color; 2. Redraw them
         seqUpdate.clear(display, BLACK)
@@ -62,6 +63,7 @@ def main():
         player.move()
         floor.draw()
         obstacle.draw()
+        wall.draw()
 
         # This one won't work until our classes are subclasses of Sprite classes
         #pygame.display.update(rect_list) # We will want to pass only those things that change into this method

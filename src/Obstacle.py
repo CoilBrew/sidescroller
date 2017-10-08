@@ -18,7 +18,7 @@ class Obstacle(object):
         vertices = [
                 self.bottom_left_location, 
                 (self.width * 0.75, self.height * 0.75 - self.obstacle_height),
-                (self.width * 0.75 - self.obstacle_length, self.height * 0.75 - self.obstacle_height),
-                (self.width * 0.75 - self.obstacle_length, self.height * 0.75)
+                (self.width * 0.75 + self.obstacle_length, self.height * 0.75 - self.obstacle_height),
+                (self.width * 0.75 + self.obstacle_length, self.height * 0.75)
         ]
         pygame.draw.polygon(self.display, self.colour, vertices, self.line_width)
