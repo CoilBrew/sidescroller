@@ -34,7 +34,7 @@ def main():
 
     event = Event() # Initialise the event handler
     wall = Wall(display, width, height) # Initialise the wall
-    player = Player(STARTX) # Initialise the player
+    player = Player(STARTX, STARTY) # Initialise the player
     level = 100
     floor = Floor(display, level, width, height, floor_height)
 
@@ -46,6 +46,8 @@ def main():
     # Create groups: a = pygame.Sprite.Group()
     # Assign to groups: Player.containers = a
     obstacle = Obstacle(display, width, height)
+
+
     # Game loop
     while True:
         display.fill(BLACK)
@@ -54,13 +56,11 @@ def main():
         seqUpdate.clear(display, BLACK)
         rect_list = seqUpdate.draw(display) # This returns a rect_list to be passed into update()
 
-        event.update(pygame.event.get())
+        event.update(pygame.event.get(), player)
 
-        #This bit below is really bad, need to get rid of the old image rather than just loading it again
-        display.blit(burritoMan, (STARTX, STARTY))  #After moving, reload the image at new position
+        display.blit(burritoMan, (player.x, player.y))  #After moving, reload the image at new position
 
         wall.move()
-        player.move()
         floor.draw()
         obstacle.draw()
         wall.draw()
@@ -76,7 +76,7 @@ def main():
         print("\n###Debugging###")
         debug_statement("FPS", round(clock.get_fps()))
         debug_statement("Wall position", wall.abs_pos)
-        debug_statement("Player position", player.position)
+        debug_statement("Player position", player.x)
 
 if __name__ == "__main__":
     main()
