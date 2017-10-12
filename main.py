@@ -30,13 +30,13 @@ def main():
 
     STARTX = 0.5 * width #Starting location is in the middle (x axis)
     STARTY = 0.75 * height #Starting location is 25% up from bottom
-    burritoMan = pygame.image.load('assets/burrito.bmp') #Assign the character image to burritoMan
+    burritoMan = pygame.image.load('assets/burrito_man.png') #Assign the character image to burritoMan
 
     event = Event() # Initialise the event handler
     wall = Wall(display, width, height) # Initialise the wall
     player = Player(STARTX) # Initialise the player
     level = 100
-    floor = Floor(display, level, width, height, floor_height) 
+    floor = Floor(display, level, width, height, floor_height)
 
     # This is the list of objects that will be updated on frame redraw, initalise it here
     seqUpdate = pygame.sprite.RenderUpdates()
@@ -71,7 +71,7 @@ def main():
         pygame.display.update()
         # Each frame call tick()
         clock.tick() # opt arg: limit framerate; otherwise, unlimited
-        
+
         # Debugging
         print("\n###Debugging###")
         debug_statement("FPS", round(clock.get_fps()))
