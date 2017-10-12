@@ -30,7 +30,6 @@ def main():
 
     STARTX = 0.5 * width #Starting location is in the middle (x axis)
     STARTY = 0.75 * height #Starting location is 25% up from bottom
-    burritoMan = pygame.image.load('assets/burrito_man.png') #Assign the character image to burritoMan
 
     event = Event() # Initialise the event handler
     wall = Wall(display, width, height) # Initialise the wall
@@ -58,7 +57,7 @@ def main():
 
         event.update(pygame.event.get(), player)
 
-        display.blit(burritoMan, (player.x, player.y))  #After moving, reload the image at new position
+        display.blit(player.image, (player.x, player.y))  #After moving, reload the image at new position
 
         wall.move()
         floor.draw()
