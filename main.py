@@ -18,6 +18,7 @@ def debug_statement(msg, args):
 
 def main():
     # CONSTANTS
+    level = 100
 
     pygame.init()
     clock = pygame.time.Clock()
@@ -35,32 +36,34 @@ def main():
 
     event = Event() # Initialise the event handler
     wall = Wall(display, width, height) # Initialise the wall
-    player = Player(STARTX, STARTY) # Initialise the player
-    level = 100
-    floor = Floor(display, level, width, height, floor_height)
-
-    # This is the list of objects that will be updated on frame redraw, initalise it here
-    seqUpdate = pygame.sprite.RenderUpdates()
+    player = Player(
+            STARTX, 
+            STARTY
+    ) # Initialise the player
+    floor = Floor(
+            display, 
+            level, 
+            width, 
+            height, 
+            floor_height
+    )
 
     display.fill(BLACK)
 
-    # Create groups: a = pygame.Sprite.Group()
-    # Assign to groups: Player.containers = a
     obstacle = Obstacle(
             display, 
             width, 
-            height)
-
+            height
+    )
 
     # Game loop
     while True:
         display.fill(BLACK)
         # For everything in the RenderUpdates group (seqUpdate):
-        #   1. Erase all sprites with color; 2. Redraw them
-        seqUpdate.clear(display, BLACK)
-        rect_list = seqUpdate.draw(display) # This returns a rect_list to be passed into update()
-
-        event.update(pygame.event.get(), player)
+        event.update(
+                pygame.event.get(), 
+                player
+        )
 
         display.blit(player.image, (player.x, player.y))  #After moving, reload the image at new position
 
@@ -69,8 +72,6 @@ def main():
         obstacle.draw()
         wall.draw()
 
-        # This one won't work until our classes are subclasses of Sprite classes
-        #pygame.display.update(rect_list) # We will want to pass only those things that change into this method
         # For now use:
         pygame.display.update()
         # Each frame call tick()
