@@ -17,6 +17,8 @@ def debug_statement(msg, args):
     print(msg + ": " + str(args))
 
 def main():
+    # CONSTANTS
+
     pygame.init()
     clock = pygame.time.Clock()
     pygame.display.set_caption('Burrito Man')
@@ -44,7 +46,10 @@ def main():
 
     # Create groups: a = pygame.Sprite.Group()
     # Assign to groups: Player.containers = a
-    obstacle = Obstacle(display, width, height)
+    obstacle = Obstacle(
+            display, 
+            width, 
+            height)
 
 
     # Game loop

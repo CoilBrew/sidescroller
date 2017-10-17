@@ -1,8 +1,8 @@
 {
     "FPS": 60,
     "resolution": {
-        "width": 1080,
-        "height": 720
+        "width": 800,
+        "height": 600
     },
     "floor_height_percentage": 0.75
 }
