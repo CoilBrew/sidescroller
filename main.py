@@ -13,8 +13,9 @@ from src.Floor import *
 from src.Player import *
 from src.Obstacle import *
 
-def debug_statement(msg, args):
-    print(msg + ": " + str(args))
+def debug_statements(lst):
+    for dictionary in lst:
+        print(dictionary["msg"] + ": " + str(dictionary["args"]))
 
 def main():
     # CONSTANTS
@@ -61,8 +62,8 @@ def main():
         display.fill(BLACK)
         # For everything in the RenderUpdates group (seqUpdate):
         event.update(
-                pygame.event.get(), 
-                player
+            pygame.event.get(), 
+            player
         )
 
         display.blit(player.image, (player.x, player.y))  #After moving, reload the image at new position
@@ -79,9 +80,11 @@ def main():
 
         # Debugging
         print("\n###Debugging###")
-        debug_statement("FPS", round(clock.get_fps()))
-        debug_statement("Wall position", wall.abs_pos)
-        debug_statement("Player position", player.x)
+        debug_statements((
+            {"msg": "FPS", "args": round(clock.get_fps())},
+            {"msg": "Wall position", "args": wall.abs_pos},
+            {"msg": "Player position", "args": player.x}
+        ))
 
 if __name__ == "__main__":
     main()
