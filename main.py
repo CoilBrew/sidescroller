@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
+# Burrito Man
+# By CoilBrew
+
 import pygame, sys, json
 from pygame.locals import *
+
 # Misc
 from random import randint
 from src.colours import *
@@ -20,6 +24,8 @@ def debug_statements(lst):
 def main():
     # CONSTANTS
     level = 100
+    LEFT = "left"
+    RIGHT = "right"
 
     pygame.init()
     clock = pygame.time.Clock()
@@ -35,25 +41,30 @@ def main():
     STARTX = 0.5 * width #Starting location is in the middle (x axis)
     STARTY = 0.75 * height #Starting location is 25% up from bottom
 
-    event = Event() # Initialise the event handler
+    event = Event(
+            LEFT,
+            RIGHT
+    ) # Initialise the event handler
     wall = Wall(display, width, height) # Initialise the wall
     player = Player(
-            STARTX, 
-            STARTY
+            STARTX,
+            STARTY,
+            LEFT,
+            RIGHT
     ) # Initialise the player
     floor = Floor(
-            display, 
-            level, 
-            width, 
-            height, 
+            display,
+            level,
+            width,
+            height,
             floor_height
     )
 
     display.fill(BLACK)
 
     obstacle = Obstacle(
-            display, 
-            width, 
+            display,
+            width,
             height
     )
 
@@ -62,7 +73,7 @@ def main():
         display.fill(BLACK)
         # For everything in the RenderUpdates group (seqUpdate):
         event.update(
-            pygame.event.get(), 
+            pygame.event.get(),
             player
         )
 

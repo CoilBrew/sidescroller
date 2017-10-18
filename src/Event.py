@@ -3,16 +3,17 @@ from pygame.locals import *
 
 class Event(object):
     """This is the event handler"""
-    def __init__(self):
-        pass
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
 
     def update(self, events, player):
         """Event loop"""
         key = pygame.key.get_pressed()
         if key[pygame.K_a]:
-            player.move("left")
+            player.move(self.left)
         elif key[pygame.K_d]:
-            player.move("right")
+            player.move(self.right)
         elif key[pygame.K_w]:
             player.move("jump")
         for e in events:
