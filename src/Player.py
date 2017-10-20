@@ -19,12 +19,6 @@ class Player(object):
         self.jumpRateUp = 10
         self.jumpRateDown = 10
         self.jumpedMaxHeight = 100 # Jumps to maximum of 100 pixels
-        # A rectangle is a polygon with four vertices
-        self.v1 = (self.x, self.y)
-        self.v2 = (self.x, self.y - self.image_height)
-        self.v3 = (self.x + self.image_length, self.y - self.image_height)
-        self.v4 = (self.x + self.image_length, self.y)
-
 
     def move(self, direction):
         """Takes a character representing the direction of movement"""
@@ -51,4 +45,11 @@ class Player(object):
                 self.jumpedHeight = self.jumpedHeight - self.jumpRateDown
             else:
                 self.jumpDown = False
+
+    def updateVertices(self):
+        """A rectangle is a polygon with four vertices"""
+        self.v1 = (self.x, self.y)
+        self.v2 = (self.x, self.y - self.image_height)
+        self.v3 = (self.x + self.image_length, self.y - self.image_height)
+        self.v4 = (self.x + self.image_length, self.y)
 
