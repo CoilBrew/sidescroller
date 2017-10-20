@@ -41,10 +41,7 @@ def main():
     STARTX = 0.5 * width #Starting location is in the middle (x axis)
     STARTY = 0.75 * height #Starting location is 25% up from bottom
 
-    event = Event(
-            LEFT,
-            RIGHT
-    ) # Initialise the event handler
+    event = Event(LEFT, RIGHT) # Initialise the event handler
     wall = Wall(display, width, height) # Initialise the wall
     player = Player(
             STARTX,
