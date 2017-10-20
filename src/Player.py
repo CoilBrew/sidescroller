@@ -47,8 +47,6 @@ class Player(object):
                 self.jumpedHeight = self.jumpedHeight - self.jumpRateDown
             else:
                 self.jumpDown = False
-<<<<<<< HEAD
-=======
 
     def updateVertices(self):
         """A rectangle is a polygon with four vertices"""
@@ -56,5 +54,3 @@ class Player(object):
         self.v2 = (self.x, self.y - self.image_height)
         self.v3 = (self.x + self.image_length, self.y - self.image_height)
         self.v4 = (self.x + self.image_length, self.y)
-
->>>>>>> a25d7e4bb48ddc99d306581198a88d2d5e0403ac
