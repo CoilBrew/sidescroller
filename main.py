@@ -26,6 +26,7 @@ def main():
     level = 100
     LEFT = "left"
     RIGHT = "right"
+    IMAGE_SIZE = 100
 
     pygame.init()
     clock = pygame.time.Clock()
@@ -45,7 +46,7 @@ def main():
     wall = Wall(display, width, height) # Initialise the wall
     player = Player(
             STARTX,
-            STARTY,
+            STARTY - IMAGE_SIZE, # This is to move the image above the floor
             LEFT,
             RIGHT
     ) # Initialise the player
@@ -80,6 +81,7 @@ def main():
         floor.draw()
         obstacle.draw()
         wall.draw()
+        player.jump_animation()
 
         # For now use:
         pygame.display.update()

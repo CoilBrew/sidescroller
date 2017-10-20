@@ -20,3 +20,8 @@ class Event(object):
             if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
                 pygame.quit()
                 sys.exit()
+
+    def overlap(self, lst):
+        """Returns all of the objects that overlap on the screen and the co-ordinates that overlap"""
+        # lst is a list of objects
+        pass
