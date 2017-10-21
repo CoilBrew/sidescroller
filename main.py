@@ -82,12 +82,9 @@ def main():
         #wall.draw(world_scroll)
         player.jump_animation()
 
-        # For now use:
         pygame.display.update()
-        # Each frame call tick()
         clock.tick(60) # opt arg: limit framerate; otherwise, unlimited
 
-        # Debugging
         print("\n###Debugging###")
         debug_statements(
             {"msg": "FPS", "args": round(clock.get_fps())},
