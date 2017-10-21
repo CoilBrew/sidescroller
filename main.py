@@ -69,32 +69,30 @@ def main():
     # Game loop
     while True:
         display.fill(BLACK)
-        # For everything in the RenderUpdates group (seqUpdate):
         event.update(
             pygame.event.get(),
             player
         )
+        world_scroll = player.world_scroll
 
         display.blit(player.image, (player.x, player.y))  #After moving, reload the image at new position
 
-        wall.move()
         floor.draw()
-        obstacle.draw(player.world_scroll)
-        wall.draw()
+        obstacle.draw(world_scroll)
+        wall.draw(world_scroll)
         player.jump_animation()
 
         # For now use:
         pygame.display.update()
         # Each frame call tick()
-        clock.tick() # opt arg: limit framerate; otherwise, unlimited
+        clock.tick(60) # opt arg: limit framerate; otherwise, unlimited
 
         # Debugging
         print("\n###Debugging###")
-        debug_statements((
+        debug_statements([
             {"msg": "FPS", "args": round(clock.get_fps())},
-            {"msg": "Wall position", "args": wall.abs_pos},
-            {"msg": "Player position", "args": player.x}
-        ))
+            {"msg": "World scroll", "args": world_scroll},
+        ])
 
 if __name__ == "__main__":
     main()
