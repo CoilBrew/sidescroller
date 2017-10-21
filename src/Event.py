@@ -30,6 +30,4 @@ class Event(object):
     def beginningOfWorld(self, world_scroll):
         """If the player is at point 0 of the world,
         then return true"""
-        if world_scroll <= 0:
-            return True
-        return False
+        return world_scroll <= 0
