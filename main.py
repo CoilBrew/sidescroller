@@ -39,8 +39,6 @@ def main():
     clock = pygame.time.Clock()
     pygame.display.set_caption('Burrito Man')
 
-
-
     event = Event(LEFT, RIGHT) # Initialise the event handler
 #    wall = Wall(display, SCREEN_WIDTH, SCREEN_HEIGHT) # Initialise the wall
     player = Player(
