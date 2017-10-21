@@ -43,7 +43,7 @@ def main():
     STARTY = 0.75 * height #Starting location is 25% up from bottom
 
     event = Event(LEFT, RIGHT) # Initialise the event handler
-    wall = Wall(display, width, height) # Initialise the wall
+#    wall = Wall(display, width, height) # Initialise the wall
     player = Player(
             STARTX,
             STARTY - IMAGE_SIZE, # This is to move the image above the floor
@@ -79,7 +79,7 @@ def main():
 
         floor.draw()
         obstacle.draw(world_scroll)
-        wall.draw(world_scroll)
+        #wall.draw(world_scroll)
         player.jump_animation()
 
         # For now use:

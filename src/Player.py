@@ -11,7 +11,7 @@ class Player(object):
 
         self.image_height = 100
         self.image_length = 100
-        self.velocity = 0.5# This modifies world scroll speed
+        self.velocity = 5# This modifies world scroll speed
         self.health = 100
         self.image = pygame.image.load('assets/burrito_man.png')
 
