@@ -11,9 +11,12 @@ class Player(object):
 
         self.image_height = 100
         self.image_length = 100
-        self.velocity = 10
+        self.velocity = 0.5# This modifies world scroll speed
         self.health = 100
         self.image = pygame.image.load('assets/burrito_man.png')
+
+        """This will determine the position of everything else"""
+        self.world_scroll = 0
 
         self.jumpUp = False
         self.jumpDown = False
@@ -26,9 +29,9 @@ class Player(object):
         """Takes a character representing the direction of movement"""
         key = pygame.key.get_pressed()
         if direction == self.left:
-            self.x = self.x - self.velocity
+            self.world_scroll = self.world_scroll - self.velocity
         elif direction == self.right:
-            self.x = self.x + self.velocity
+            self.world_scroll = self.world_scroll + self.velocity
         elif direction == "jump":
             self.jumpUp = True
 

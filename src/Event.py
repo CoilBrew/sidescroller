@@ -10,11 +10,13 @@ class Event(object):
     def update(self, events, player):
         """Event loop"""
         key = pygame.key.get_pressed()
-        if key[pygame.K_a]:
+        if key[pygame.K_w] or key[pygame.K_SPACE]:
+            player.move("jump")
+        elif key[pygame.K_a]:
             player.move(self.left)
         elif key[pygame.K_d]:
             player.move(self.right)
-        elif key[pygame.K_w]:
+        if key[pygame.K_w]:
             player.move("jump")
         for e in events:
             if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):

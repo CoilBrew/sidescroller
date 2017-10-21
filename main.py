@@ -79,7 +79,7 @@ def main():
 
         wall.move()
         floor.draw()
-        obstacle.draw()
+        obstacle.draw(player.world_scroll)
         wall.draw()
         player.jump_animation()
 
