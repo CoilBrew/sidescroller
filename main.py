@@ -17,9 +17,9 @@ from src.Floor import *
 from src.Player import *
 from src.Obstacle import *
 
-def debug_statements(lst):
-    for dictionary in lst:
-        print(dictionary["msg"] + ": " + str(dictionary["args"]))
+def debug_statements(*dictionary):
+    for d in dictionary:
+        print(d["msg"] + ": " + str(d["args"]))
 
 def main():
     # CONSTANTS
@@ -89,10 +89,10 @@ def main():
 
         # Debugging
         print("\n###Debugging###")
-        debug_statements([
+        debug_statements(
             {"msg": "FPS", "args": round(clock.get_fps())},
             {"msg": "World scroll", "args": world_scroll},
-        ])
+        )
 
 if __name__ == "__main__":
     main()
