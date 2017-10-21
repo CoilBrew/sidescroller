@@ -3,14 +3,13 @@ from src.colours import *
 import pygame
 
 class Obstacle(object):
-    def __init__(self, display, width, height):
+    def __init__(self, display, width, height, floor_height_percentage):
         self.display = display
-        self.x = width
-        self.y = height
+        self.x = width * floor_height_percentage
+        self.y = height * floor_height_percentage
         self.colour = FLOOR_GREEN
         self.obstacle_height = randint(50, 250)
         self.obstacle_length = randint(50, 250)
-        self.bottom_left_location = (self.x * 0.75, self.y * 0.75) # It starts here
         self.line_width = 1
 
     def draw(self, world_scroll=0):

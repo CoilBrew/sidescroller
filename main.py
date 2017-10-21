@@ -27,43 +27,43 @@ def main():
     LEFT = "left"
     RIGHT = "right"
     IMAGE_SIZE = 100
+    settings = Settings() # Initialise settings object
+    SCREEN_WIDTH, SCREEN_HEIGHT = settings.width, settings.height
+    FLOOR_HEIGHT = SCREEN_HEIGHT * settings.floor_height_percentage
+    PLAYER_START_X = 0.25 * SCREEN_WIDTH
+    PLAYER_START_Y = settings.floor_height_percentage * SCREEN_HEIGHT
 
+    display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    
     pygame.init()
     clock = pygame.time.Clock()
     pygame.display.set_caption('Burrito Man')
 
-    # Settings
-    settings = Settings()
-    width, height = settings.width, settings.height
-    floor_height = height * settings.floor_height_percentage
 
-    display = pygame.display.set_mode((width, height))
-
-    STARTX = 0.5 * width #Starting location is in the middle (x axis)
-    STARTY = 0.75 * height #Starting location is 25% up from bottom
 
     event = Event(LEFT, RIGHT) # Initialise the event handler
-#    wall = Wall(display, width, height) # Initialise the wall
+#    wall = Wall(display, SCREEN_WIDTH, SCREEN_HEIGHT) # Initialise the wall
     player = Player(
-            STARTX,
-            STARTY - IMAGE_SIZE, # This is to move the image above the floor
+            PLAYER_START_X,
+            PLAYER_START_Y - IMAGE_SIZE, # This is to move the image above the floor
             LEFT,
             RIGHT
     ) # Initialise the player
     floor = Floor(
             display,
             level,
-            width,
-            height,
-            floor_height
+            SCREEN_WIDTH,
+            SCREEN_HEIGHT,
+            FLOOR_HEIGHT
     )
 
     display.fill(BLACK)
 
     obstacle = Obstacle(
             display,
-            width,
-            height
+            SCREEN_WIDTH,
+            SCREEN_HEIGHT,
+            settings.floor_height_percentage
     )
 
     # Game loop
