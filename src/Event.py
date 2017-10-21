@@ -13,7 +13,8 @@ class Event(object):
         if key[pygame.K_w] or key[pygame.K_SPACE]:
             player.move("jump")
         elif key[pygame.K_a]:
-            player.move(self.left)
+            if not(self.beginningOfWorld(player.world_scroll)):
+                player.move(self.left)
         elif key[pygame.K_d]:
             player.move(self.right)
         for e in events:
@@ -25,3 +26,10 @@ class Event(object):
         """Returns all of the objects that overlap on the screen and the co-ordinates that overlap"""
         # lst is a list of objects
         pass
+
+    def beginningOfWorld(self, world_scroll):
+        """If the player is at point 0 of the world,
+        then return true"""
+        if world_scroll <= 0:
+            return True
+        return False
