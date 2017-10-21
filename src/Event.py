@@ -16,8 +16,6 @@ class Event(object):
             player.move(self.left)
         elif key[pygame.K_d]:
             player.move(self.right)
-        if key[pygame.K_w]:
-            player.move("jump")
         for e in events:
             if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
                 pygame.quit()
