@@ -10,12 +10,13 @@ class Event(object):
     def update(self, events, player):
         """Event loop"""
         key = pygame.key.get_pressed()
-        if key[pygame.K_a]:
-            player.move(self.left)
+        if key[pygame.K_w] or key[pygame.K_SPACE]:
+            player.move("jump")
+        elif key[pygame.K_a]:
+            if not(self.beginningOfWorld(player.world_scroll)):
+                player.move(self.left)
         elif key[pygame.K_d]:
             player.move(self.right)
-        elif key[pygame.K_w]:
-            player.move("jump")
         for e in events:
             if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
                 pygame.quit()
@@ -25,3 +26,8 @@ class Event(object):
         """Returns all of the objects that overlap on the screen and the co-ordinates that overlap"""
         # lst is a list of objects
         pass
+
+    def beginningOfWorld(self, world_scroll):
+        """If the player is at point 0 of the world,
+        then return true"""
+        return world_scroll <= 0

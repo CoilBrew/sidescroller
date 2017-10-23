@@ -17,9 +17,9 @@ from src.Floor import *
 from src.Player import *
 from src.Obstacle import *
 
-def debug_statements(lst):
-    for dictionary in lst:
-        print(dictionary["msg"] + ": " + str(dictionary["args"]))
+def debug_statements(*dictionary):
+    for d in dictionary:
+        print(d["msg"] + ": " + str(d["args"]))
 
 def main():
     # CONSTANTS
@@ -27,74 +27,67 @@ def main():
     LEFT = "left"
     RIGHT = "right"
     IMAGE_SIZE = 100
+    settings = Settings() # Initialise settings object
+    SCREEN_WIDTH, SCREEN_HEIGHT = settings.width, settings.height
+    FLOOR_HEIGHT = SCREEN_HEIGHT * settings.floor_height_percentage
+    PLAYER_START_X = 0.25 * SCREEN_WIDTH
+    PLAYER_START_Y = settings.floor_height_percentage * SCREEN_HEIGHT
 
+    display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    
     pygame.init()
     clock = pygame.time.Clock()
     pygame.display.set_caption('Burrito Man')
 
-    # Settings
-    settings = Settings()
-    width, height = settings.width, settings.height
-    floor_height = height * settings.floor_height_percentage
-
-    display = pygame.display.set_mode((width, height))
-
-    STARTX = 0.5 * width #Starting location is in the middle (x axis)
-    STARTY = 0.75 * height #Starting location is 25% up from bottom
-
     event = Event(LEFT, RIGHT) # Initialise the event handler
-    wall = Wall(display, width, height) # Initialise the wall
+#    wall = Wall(display, SCREEN_WIDTH, SCREEN_HEIGHT) # Initialise the wall
     player = Player(
-            STARTX,
-            STARTY - IMAGE_SIZE, # This is to move the image above the floor
+            PLAYER_START_X,
+            PLAYER_START_Y - IMAGE_SIZE, # This is to move the image above the floor
             LEFT,
             RIGHT
     ) # Initialise the player
     floor = Floor(
             display,
             level,
-            width,
-            height,
-            floor_height
+            SCREEN_WIDTH,
+            SCREEN_HEIGHT,
+            FLOOR_HEIGHT
     )
 
     display.fill(BLACK)
 
     obstacle = Obstacle(
             display,
-            width,
-            height
+            SCREEN_WIDTH,
+            SCREEN_HEIGHT,
+            settings.floor_height_percentage
     )
 
     # Game loop
     while True:
         display.fill(BLACK)
-        # For everything in the RenderUpdates group (seqUpdate):
         event.update(
             pygame.event.get(),
             player
         )
+        world_scroll = player.world_scroll
 
         display.blit(player.image, (player.x, player.y))  #After moving, reload the image at new position
 
-        wall.move()
         floor.draw()
-        obstacle.draw()
-        wall.draw()
+        obstacle.draw(world_scroll)
+        #wall.draw(world_scroll)
         player.jump_animation()
 
-        # For now use:
         pygame.display.update()
-        # Each frame call tick()
-        clock.tick() # opt arg: limit framerate; otherwise, unlimited
+        clock.tick(60) # opt arg: limit framerate; otherwise, unlimited
 
-        # Debugging
         print("\n###Debugging###")
-        debug_statements((
+        debug_statements(
             {"msg": "FPS", "args": round(clock.get_fps())},
-            {"msg": "Wall position", "args": wall.abs_pos},
-            {"msg": "Player position", "args": player.x}
-        ))
+            {"msg": "World scroll", "args": world_scroll},
+        )
 
 if __name__ == "__main__":
     main()
