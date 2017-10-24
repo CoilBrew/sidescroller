@@ -34,7 +34,7 @@ def main():
     PLAYER_START_Y = settings.floor_height_percentage * SCREEN_HEIGHT
 
     display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    
+
     pygame.init()
     clock = pygame.time.Clock()
     pygame.display.set_caption('Burrito Man')

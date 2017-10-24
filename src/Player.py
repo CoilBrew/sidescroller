@@ -1,5 +1,7 @@
 import pygame
 import time
+from datetime import datetime, timedelta
+from functools import wraps
 
 class Player(object):
     """This defines the player"""
@@ -21,9 +23,9 @@ class Player(object):
         self.jumpUp = False
         self.jumpDown = False
         self.jumpedHeight = 0
-        self.jumpRateUp = 10
+        self.jumpRateUp = 100
         self.jumpRateDown = 10
-        self.jumpedMaxHeight = 100 # Jumps to maximum of 100 pixels
+        self.jumpedMaxHeight = 1000 # Jumps to maximum of 100 pixels
 
     def move(self, direction):
         """Takes a character representing the direction of movement"""
@@ -33,7 +35,8 @@ class Player(object):
         elif direction == self.right:
             self.world_scroll = self.world_scroll + self.velocity
         elif direction == "jump":
-            self.jumpUp = True
+            if self.jumpDown == False:
+                self.jumpUp = True
 
     def jump_animation(self):
         """Manages jump animation"""
