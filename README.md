@@ -23,8 +23,8 @@ Run
 - ~~Write method for Player movement (up/jump) on key input~~
 - ~~Write method for wall movement (at some constant rate)~~
 - Implement physics (improve how player movement is handled)
-- Make world shift with player movement
-- Create some assets (player, wall)
+- ~~Make world shift with player movement~~
+- ~~Create some assets (player, wall)~~
 - Write method for floor movement (at the same rate as player movement)
 - Write method for floor traps (triggered by player or environment)
 - Create background
