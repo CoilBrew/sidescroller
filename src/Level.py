@@ -13,9 +13,8 @@ class Level(object):
 # Here we want to store a list of Obstacles.
 
 # Generate obstacles method.
-    def generateObstacles(self):
+    def generateObstacles(self, obstacle_num=10):
         obstacle_list = []
-        obstacle_num = 10
 
         for n in range(obstacle_num):
             obstacle_list.append(Obstacle(

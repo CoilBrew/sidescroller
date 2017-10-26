@@ -63,7 +63,7 @@ def main():
     )
 
     # Generate obstacles with function in Level class
-    obstacle_list = level.generateObstacles()
+    obstacle_list = level.generateObstacles(obstacle_num=10)
 
     # Game loop
     while True:
