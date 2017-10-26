@@ -1,19 +1,19 @@
 import pygame
 from random import randint
 from src.colours import *
-from src.Universe import * 
+from src.Level import *
 
-class Floor(Universe):
+class Floor(Level):
     """This class defines the floor"""
-    def __init__(self, display, level, width, height, floor_height):
-        Universe.__init__(self, level)
+
+    def __init__(self, display, width, height, floor_height):
         self.display = display # Takes a display argument and stores it internally
         self.colour = FLOOR_GREEN
         self.startpoint = 0
         self.floor_height = floor_height
         self.width = width
         self.height = height
-        #self.endpoint = self.levellength #inheritesd from the Universe class?    # The endpoint of the floor, where the level ends :: (Int, Int)
+        #self.endpoint = self.levellength #inheritesd from the Level class?    # The endpoint of the floor, where the level ends :: (Int, Int)
         self.begin = (0, floor_height)
         self.end = (width, floor_height)
 

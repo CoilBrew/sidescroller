@@ -11,7 +11,7 @@ from src.colours import *
 # Classes
 from src.Event import *
 from src.Wall import *
-from src.Universe import *
+from src.Level import *
 from src.Settings import *
 from src.Floor import *
 from src.Player import *
@@ -23,7 +23,6 @@ def debug_statements(*dictionary):
 
 def main():
     # CONSTANTS
-    level = 100
     LEFT = "left"
     RIGHT = "right"
     IMAGE_SIZE = 100
@@ -49,7 +48,6 @@ def main():
     ) # Initialise the player
     floor = Floor(
             display,
-            level,
             SCREEN_WIDTH,
             SCREEN_HEIGHT,
             FLOOR_HEIGHT
@@ -57,12 +55,15 @@ def main():
 
     display.fill(BLACK)
 
-    obstacle = Obstacle(
+    level = Level(
             display,
             SCREEN_WIDTH,
             SCREEN_HEIGHT,
             settings.floor_height_percentage
     )
+
+    # Generate obstacles with function in Level class
+    obstacle_list = level.generateObstacles()
 
     # Game loop
     while True:
@@ -76,7 +77,11 @@ def main():
         display.blit(player.image, (player.x, player.y))  #After moving, reload the image at new position
 
         floor.draw()
-        obstacle.draw(world_scroll)
+        
+        # draw all Obstacles in obstacle_list
+        for obj in obstacle_list:
+            obj.draw(world_scroll)
+
         #wall.draw(world_scroll)
         player.jump_animation()
 
