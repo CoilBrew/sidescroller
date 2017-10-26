@@ -23,9 +23,9 @@ class Player(object):
         self.jumpUp = False
         self.jumpDown = False
         self.jumpedHeight = 0
-        self.jumpRateUp = 100
-        self.jumpRateDown = 25
-        self.jumpedMaxHeight = 100 # Jumps to maximum of 100 pixels
+        self.jumpRateUp = 25
+        self.jumpRateDown = 12
+        self.jumpedMaxHeight = 150 # Jumps to maximum of 100 pixels
 
     def move(self, direction):
         """Takes a character representing the direction of movement"""
