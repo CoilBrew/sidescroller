@@ -24,8 +24,8 @@ class Player(object):
         self.jumpDown = False
         self.jumpedHeight = 0
         self.jumpRateUp = 100
-        self.jumpRateDown = 10
-        self.jumpedMaxHeight = 1000 # Jumps to maximum of 100 pixels
+        self.jumpRateDown = 25
+        self.jumpedMaxHeight = 100 # Jumps to maximum of 100 pixels
 
     def move(self, direction):
         """Takes a character representing the direction of movement"""
@@ -49,7 +49,7 @@ class Player(object):
                 self.jumpDown = True
         elif self.jumpDown == True:
             if self.jumpedHeight > 0:
-                self.y = self.y + self.jumpRateUp
+                self.y = self.y + self.jumpRateDown
                 self.jumpedHeight = self.jumpedHeight - self.jumpRateDown
             else:
                 self.jumpDown = False
