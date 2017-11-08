@@ -68,10 +68,14 @@ class Player(object):
     def putOnObstacleFloor(self, obstacles):
         yes = False
         for obst in obstacles:
-            if self.vertices["bottom_right"][0] - 50 > obst.vertices["bottom_left"][0] and self.vertices["bottom_right"][0] < obst.vertices["bottom_right"][0] and self.vertices["bottom_left"][1] <= obst.vertices["bottom_left"][1]:
+            if (self.vertices["bottom_right"][0] - 50 > obst.vertices["bottom_left"][0] and 
+                self.vertices["bottom_right"][0] < obst.vertices["bottom_right"][0] and 
+                self.vertices["bottom_left"][1] <= obst.vertices["bottom_left"][1]):
                 self.elevatedPlatform = obst
                 yes = True
-            elif self.vertices["bottom_left"][0] + 50 > obst.vertices["bottom_left"][0] and self.vertices["bottom_left"][0] < obst.vertices["bottom_right"][0] and self.vertices["bottom_left"][1] <= obst.vertices["bottom_left"][1]:
+            elif (self.vertices["bottom_left"][0] + 50 > obst.vertices["bottom_left"][0] and 
+                  self.vertices["bottom_left"][0] < obst.vertices["bottom_right"][0] and 
+                  self.vertices["bottom_left"][1] <= obst.vertices["bottom_left"][1]):
                 self.elevatedPlatform = obst
                 yes = True
         if not(yes):
@@ -89,12 +93,16 @@ class Player(object):
 
     def collideObstacleRight(self, obstacles):
         for obst in obstacles:
-            if self.vertices["bottom_right"][0] >= obst.vertices["bottom_left"][0] and self.vertices["bottom_left"][0] < obst.vertices["bottom_left"][0] and self.vertices["bottom_right"][1] > obst.vertices["top_right"][1]:
+            if (self.vertices["bottom_right"][0] >= obst.vertices["bottom_left"][0] and 
+                self.vertices["bottom_left"][0] < obst.vertices["bottom_left"][0] and 
+                self.vertices["bottom_right"][1] > obst.vertices["top_right"][1]):
                 return True
         return False
 
     def collideObstacleLeft(self, obstacles):
         for obst in obstacles:
-            if self.vertices["bottom_left"][0] <= obst.vertices["bottom_right"][0] and self.vertices["bottom_right"][0] > obst.vertices["bottom_right"][0] and self.vertices["bottom_left"][1] > obst.vertices["top_left"][1]:
+            if (self.vertices["bottom_left"][0] <= obst.vertices["bottom_right"][0] and 
+                self.vertices["bottom_right"][0] > obst.vertices["bottom_right"][0] and 
+                self.vertices["bottom_left"][1] > obst.vertices["top_left"][1]):
                 return True
         return False
