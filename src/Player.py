@@ -73,8 +73,8 @@ class Player(object):
                 self.vertices["bottom_left"][1] <= obst.vertices["bottom_left"][1]):
                 self.elevatedPlatform = obst
                 yes = True
-            elif (self.vertices["bottom_left"][0] + 50 > obst.vertices["bottom_left"][0] and 
-                  self.vertices["bottom_left"][0] < obst.vertices["bottom_right"][0] and 
+            elif (self.vertices["bottom_left"][0] > obst.vertices["bottom_left"][0] and 
+                  self.vertices["bottom_left"][0] + 50 < obst.vertices["bottom_right"][0] and 
                   self.vertices["bottom_left"][1] <= obst.vertices["bottom_left"][1]):
                 self.elevatedPlatform = obst
                 yes = True
