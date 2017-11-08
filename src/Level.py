@@ -16,7 +16,7 @@ class Level(object):
     def generateObstacles(self, obstacle_num=10):
         obstacle_list = []
 
-        for n in range(obstacle_num):
+        for n in range(1, obstacle_num):
             obstacle_list.append(Obstacle(
                     self.display,
                     self.width,
