@@ -30,7 +30,7 @@ def main():
     SCREEN_WIDTH, SCREEN_HEIGHT = settings.width, settings.height
     FLOOR_HEIGHT = SCREEN_HEIGHT * settings.floor_height_percentage
     PLAYER_START_X = 0.25 * SCREEN_WIDTH
-    PLAYER_START_Y = settings.floor_height_percentage * SCREEN_HEIGHT
+    PLAYER_START_Y = settings.floor_height_percentage * SCREEN_HEIGHT - 3
 
     display = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -68,10 +68,8 @@ def main():
     # Game loop
     while True:
         display.fill(BLACK)
-        event.update(
-            pygame.event.get(),
-            player
-        )
+        player.updateVertices()
+        event.update(pygame.event.get(), player, obstacle_list)
         world_scroll = player.world_scroll
 
         display.blit(player.image, (player.x, player.y))  #After moving, reload the image at new position
@@ -79,8 +77,11 @@ def main():
         floor.draw()
         
         # draw all Obstacles in obstacle_list
-        for obj in obstacle_list:
-            obj.draw(world_scroll)
+        for obst in obstacle_list:
+            obst.draw(world_scroll)
+
+        player.putOnObstacleFloor(obstacle_list)
+        player.raiseToFloor()
 
         #wall.draw(world_scroll)
         player.jump_animation()
