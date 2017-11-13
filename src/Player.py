@@ -5,12 +5,10 @@ from functools import wraps
 
 class Player(object):
     """This defines the player"""
-    def __init__(self, startx, starty, left, right): # Constructor method
+    def __init__(self, startx, starty): # Constructor method
         self.starty = starty
         self.x = startx
         self.y = starty
-        self.left = left
-        self.right = right
 
         self.image_height = 100
         self.image_length = 100
@@ -20,6 +18,7 @@ class Player(object):
 
         """This will determine the position of everything else"""
         self.world_scroll = 0
+        self.world_tower = 0
 
         self.jumpUp = False
         self.jumpDown = False
@@ -30,16 +29,11 @@ class Player(object):
 
         self.elevatedPlatform = False
 
-    def move(self, direction, obstacles):
-        """Takes a character representing the direction of movement"""
-        key = pygame.key.get_pressed()
-        if direction == self.left and not(self.collideObstacleLeft(obstacles)):
-            self.world_scroll = self.world_scroll - self.velocity
-        elif direction == self.right and not(self.collideObstacleRight(obstacles)):
-            self.world_scroll = self.world_scroll + self.velocity
-        elif direction == "jump":
-            if self.jumpDown == False:
-                self.jumpUp = True
+        self.rect = pygame.Rect(self.x, self.y, self.image_length, -self.image_height)
+
+    def jump(self):
+        if self.jumpDown == False:
+            self.jumpUp = True
 
     def jump_animation(self):
         """Manages jump animation"""
@@ -91,18 +85,3 @@ class Player(object):
             self.y = self.starty
             return False
 
-    def collideObstacleRight(self, obstacles):
-        for obst in obstacles:
-            if (self.vertices["bottom_right"][0] >= obst.vertices["bottom_left"][0] and 
-                self.vertices["bottom_left"][0] < obst.vertices["bottom_left"][0] and 
-                self.vertices["bottom_right"][1] > obst.vertices["top_right"][1]):
-                return True
-        return False
-
-    def collideObstacleLeft(self, obstacles):
-        for obst in obstacles:
-            if (self.vertices["bottom_left"][0] <= obst.vertices["bottom_right"][0] and 
-                self.vertices["bottom_right"][0] > obst.vertices["bottom_right"][0] and 
-                self.vertices["bottom_left"][1] > obst.vertices["top_left"][1]):
-                return True
-        return False

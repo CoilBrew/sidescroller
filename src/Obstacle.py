@@ -15,20 +15,14 @@ class Obstacle(object):
         self.obstacle_length = randint(50, 250)
         self.line_width = 1
 
-    def draw(self, world_scroll=0):
-        self.updateVertices(world_scroll)
-        vertices = [
-            self.vertices["bottom_left"], 
-            self.vertices["top_left"], 
-            self.vertices["top_right"], 
-            self.vertices["bottom_right"]
-        ]
-        pygame.draw.polygon(self.display, self.colour, vertices, self.line_width)
+        # use a negative integer here for length and height, in order to project the rects upward
+        self.rect = pygame.Rect(self.x, self.y, self.obstacle_length, -self.obstacle_height)
 
-    def updateVertices(self, world_scroll):
-        """A rectangle is a polygon with four vertices"""
-        v1 = (self.x - world_scroll, self.y)
-        v2 = (self.x - world_scroll, self.y - self.obstacle_height)
-        v3 = (self.x + self.obstacle_length - world_scroll, self.y - self.obstacle_height)
-        v4 = (self.x + self.obstacle_length - world_scroll, self.y)
-        self.vertices = {"bottom_left": v1, "top_left": v2, "top_right": v3, "bottom_right": v4}
+    def draw(self):
+        pygame.draw.rect(self.display, self.colour, self.rect, self.line_width)
+
+    def update(self, world_scroll):
+        x = self.x - world_scroll
+        y = self.y
+        self.rect = pygame.Rect(x, y, self.obstacle_length, -self.obstacle_height)
+
