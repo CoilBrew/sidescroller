@@ -59,29 +59,3 @@ class Player(object):
         v4 = (self.x + self.image_length, self.y)
         self.vertices = {"bottom_left": v1, "top_left": v2, "top_right": v3, "bottom_right": v4}
 
-    def putOnObstacleFloor(self, obstacles):
-        yes = False
-        for obst in obstacles:
-            if (self.vertices["bottom_right"][0] - 50 > obst.vertices["bottom_left"][0] and 
-                self.vertices["bottom_right"][0] < obst.vertices["bottom_right"][0] and 
-                self.vertices["bottom_left"][1] <= obst.vertices["bottom_left"][1]):
-                self.elevatedPlatform = obst
-                yes = True
-            elif (self.vertices["bottom_left"][0] > obst.vertices["bottom_left"][0] and 
-                  self.vertices["bottom_left"][0] + 50 < obst.vertices["bottom_right"][0] and 
-                  self.vertices["bottom_left"][1] <= obst.vertices["bottom_left"][1]):
-                self.elevatedPlatform = obst
-                yes = True
-        if not(yes):
-            self.elevatedPlatform = False
-
-    def raiseToFloor(self):
-        if self.jumpUp or self.jumpDown:
-            return False
-        elif self.elevatedPlatform:
-            self.y = self.elevatedPlatform.vertices["top_left"][1] - self.image_height
-            return True
-        else: 
-            self.y = self.starty
-            return False
-
