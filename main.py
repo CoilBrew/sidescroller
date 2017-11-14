@@ -65,6 +65,9 @@ def main():
     # Generate obstacles with function in Level class
     obstacle_list = level.generateObstacles(obstacle_num=10)
 
+    # Work out where the finish line should be (300px after last obstacle)
+    end_coord = level.createEnd(obstacle_list)
+
     # Game loop
     while True:
         display.fill(BLACK)
@@ -75,10 +78,13 @@ def main():
         display.blit(player.image, (player.x, player.y))  #After moving, reload the image at new position
 
         floor.draw()
-        
+
         # draw all Obstacles in obstacle_list
         for obst in obstacle_list:
             obst.draw(world_scroll)
+
+        # Draw the finish line as a vertical white line
+        level.drawFinish(end_coord, world_scroll)
 
         player.putOnObstacleFloor(obstacle_list)
         player.raiseToFloor()
@@ -93,6 +99,7 @@ def main():
         debug_statements(
             {"msg": "FPS", "args": round(clock.get_fps())},
             {"msg": "World scroll", "args": world_scroll},
+            {"msg": "Distance to finish", "args": (end_coord[0] - world_scroll - 250)},
         )
 
 if __name__ == "__main__":
