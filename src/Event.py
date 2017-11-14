@@ -29,6 +29,9 @@ class Event(object):
                     player.collisionLeft = True
                 elif not(player.rect.colliderect(obst.rect)):
                     player.collisionLeft = False
+            # jump #TODO
+            elif player.jumpDown and player.rect.colliderect(obst.rect) and (player.collisionLeft == False and player.collisionRight == False):
+                player.jumpDown = False# stop jumping 
 
         # jump
         if key[pygame.K_w] or key[pygame.K_SPACE]:
