@@ -64,7 +64,6 @@ def main():
     # Game loop
     while True:
         display.fill(BLACK)
-        player.updateVertices()
         event.update(pygame.event.get(), player, obstacle_list)
         world_scroll = player.world_scroll
 
