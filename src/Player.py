@@ -7,18 +7,17 @@ class Player(object):
     """This defines the player"""
     def __init__(self, startx, starty): # Constructor method
         self.starty = starty
-        self.x = startx
-        self.y = starty
-
         self.image_height = 100
         self.image_length = 100
+        self.x = startx
+        self.y = starty - self.image_height
+
         self.velocity = 5# This modifies world scroll speed
         self.health = 100
         self.image = pygame.image.load('assets/burrito_man.png')
 
         """This will determine the position of everything else"""
         self.world_scroll = 0
-        self.world_tower = 0
 
         self.jumpUp = False
         self.jumpDown = False
@@ -29,7 +28,13 @@ class Player(object):
 
         self.elevatedPlatform = False
 
-        self.rect = pygame.Rect(self.x, self.y, self.image_length, -self.image_height)
+        self.rect = pygame.Rect(self.x, self.y, self.image_length, self.image_height)
+
+    def move(self, direction, obst):
+        if direction == "l":
+            self.rect.left = obst.rect.right
+        elif direction == "r":
+            self.rect.right = obst.rect.left
 
     def jump(self):
         if self.jumpDown == False:

@@ -68,7 +68,7 @@ def main():
         event.update(pygame.event.get(), player, obstacle_list)
         world_scroll = player.world_scroll
 
-        display.blit(player.image, (player.x, player.y - player.image_height))  #After moving, reload the image at new position
+        display.blit(player.image, (player.x, player.y))# - player.image_height))  #After moving, reload the image at new position
         floor.draw()
         
         # draw all Obstacles in obstacle_list

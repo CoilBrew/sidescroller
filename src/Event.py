@@ -15,10 +15,10 @@ class Event(object):
             if player.rect.colliderect(obst.rect):
                 print("COLLISION")
                 if key[pygame.K_d]:
-                    player.rect.right = obst.rect.left
+                    player.move("r", obst)
                     return 0
                 elif key[pygame.K_a]:
-                    player.rect.left = obst.rect.right
+                    player.move("l", obst)
                     return 0
         if key[pygame.K_w] or key[pygame.K_SPACE]:
             player.jump()
