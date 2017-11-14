@@ -27,14 +27,16 @@ class Player(object):
         self.jumpedMaxHeight = 150 # Jumps to maximum of 100 pixels
 
         self.elevatedPlatform = False
+        self.collisionLeft = False
+        self.collisionRight = False
 
         self.rect = pygame.Rect(self.x, self.y, self.image_length, self.image_height)
 
-    def move(self, direction, obst):
-        if direction == "l":
-            self.rect.left = obst.rect.right
-        elif direction == "r":
-            self.rect.right = obst.rect.left
+    def move(self, direction):
+        if direction == "left" and not(self.collisionLeft):
+            self.world_scroll = self.world_scroll - self.velocity
+        elif direction == "right" and not(self.collisionRight):
+            self.world_scroll = self.world_scroll + self.velocity
 
     def jump(self):
         if self.jumpDown == False:

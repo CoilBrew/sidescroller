@@ -9,24 +9,30 @@ class Event(object):
     def update(self, events, player, obstacles):
         """Event loop"""
         key = pygame.key.get_pressed()
+        # move
+        print(player.collisionRight)
+        if key[pygame.K_d]:
+            player.move("right")
+        elif key[pygame.K_a] and not(self.beginningOfWorld(player.world_scroll)):
+            player.move("left")
+        # collision
         for obst in obstacles:
             print(obst.rect)
             print(player.rect)
-            if player.rect.colliderect(obst.rect):
-                print("COLLISION")
-                if key[pygame.K_d]:
-                    player.move("r", obst)
-                    return 0
-                elif key[pygame.K_a]:
-                    player.move("l", obst)
-                    return 0
+            if key[pygame.K_d]:
+                if player.rect.colliderect(obst.rect) and player.collisionLeft == False:
+                    player.collisionRight = True
+                elif not(player.rect.colliderect(obst.rect)):
+                    player.collisionRight = False
+            elif key[pygame.K_a]:
+                if player.rect.colliderect(obst.rect) and player.collisionRight == False:
+                    player.collisionLeft = True
+                elif not(player.rect.colliderect(obst.rect)):
+                    player.collisionLeft = False
+
+        # jump
         if key[pygame.K_w] or key[pygame.K_SPACE]:
             player.jump()
-        elif key[pygame.K_a]:
-            if not(self.beginningOfWorld(player.world_scroll)):
-                player.world_scroll = player.world_scroll - player.velocity
-        elif key[pygame.K_d]:
-            player.world_scroll = player.world_scroll + player.velocity
         # Exit
         for e in events:
             if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
