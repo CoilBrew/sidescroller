@@ -5,12 +5,13 @@ from functools import wraps
 
 class Player(object):
     """This defines the player"""
-    def __init__(self, startx, starty): # Constructor method
+    def __init__(self, startx, starty, floor_height): # Constructor method
         self.starty = starty
         self.image_height = 100
         self.image_length = 100
         self.x = startx
         self.y = starty - self.image_height
+        self.floor = floor_height
 
         self.velocity = 5# This modifies world scroll speed
         self.health = 100
@@ -44,6 +45,10 @@ class Player(object):
 
     def jump_animation(self):
         """Manages jump animation"""
+        if self.rect.bottom >= self.floor:
+            # Do not let the player fall through the floor
+            self.jumpDown = False
+
         if self.jumpUp == True:
             if self.jumpedHeight <= self.jumpedMaxHeight:
                 self.y = self.y - self.jumpRateUp

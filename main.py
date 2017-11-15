@@ -40,7 +40,8 @@ def main():
 #    wall = Wall(display, SCREEN_WIDTH, SCREEN_HEIGHT) # Initialise the wall
     player = Player(
             PLAYER_START_X,
-            PLAYER_START_Y, #- IMAGE_SIZE, # This is to move the image above the floor
+            PLAYER_START_Y,
+            FLOOR_HEIGHT
     ) # Initialise the player
     floor = Floor(
             display,

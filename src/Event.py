@@ -10,7 +10,6 @@ class Event(object):
         """Event loop"""
         key = pygame.key.get_pressed()
         # move
-        print(player.collisionRight)
         if key[pygame.K_d]:
             player.move("right")
         elif key[pygame.K_a] and not(self.beginningOfWorld(player.world_scroll)):
@@ -24,18 +23,24 @@ class Event(object):
                     player.collisionRight = True
                 elif not(player.rect.colliderect(obst.rect)):
                     player.collisionRight = False
-            elif key[pygame.K_a]:
+            if key[pygame.K_a]:
                 if player.rect.colliderect(obst.rect) and player.collisionRight == False:
                     player.collisionLeft = True
                 elif not(player.rect.colliderect(obst.rect)):
                     player.collisionLeft = False
-            # jump #TODO
-            elif player.jumpDown and player.rect.colliderect(obst.rect) and (player.collisionLeft == False and player.collisionRight == False):
-                player.jumpDown = False# stop jumping 
+            # jump
+            if player.jumpDown and (self.inXColumn(player.rect, obst.rect)):
+                if player.rect.bottom <= obst.rect.top:
+                    player.jumpDown = False # stop jumping 
+            
+            # gravity
+            if not(self.inXColumn(player.rect, obst.rect)) and player.rect.bottom < player.floor:
+                player.jumpDown = True
 
         # jump
         if key[pygame.K_w] or key[pygame.K_SPACE]:
             player.jump()
+
         # Exit
         for e in events:
             if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
@@ -49,3 +54,11 @@ class Event(object):
 
     def gameOver(self):
         pass
+
+    def inXColumn(self, rect1, rect2):
+        if rect1.center[0] >= rect2.left and rect1.center[0] <= rect2.right:
+            return True
+        return False
+        
+
+
