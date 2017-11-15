@@ -16,8 +16,7 @@ class Event(object):
             player.move("left")
         # collision
         for obst in obstacles:
-            print(obst.rect)
-            print(player.rect)
+            # This can only deal with one obstacle at a time atm
             if key[pygame.K_d]:
                 if player.rect.colliderect(obst.rect) and player.collisionLeft == False:
                     player.collisionRight = True

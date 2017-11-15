@@ -10,12 +10,12 @@ from random import randint
 from src.colours import *
 # Classes
 from src.Event import *
-from src.Wall import *
 from src.Level import *
 from src.Settings import *
 from src.Floor import *
 from src.Player import *
 from src.Obstacle import *
+from src.Timer import *
 
 def debug_statements(*dictionary):
     for d in dictionary:
@@ -58,6 +58,8 @@ def main():
             SCREEN_HEIGHT,
             settings.floor_height_percentage
     )
+    
+    timer = Timer(display, GREEN, BLACK)
 
     # Generate obstacles with function in Level class
     obstacle_list = level.generateObstacles(obstacle_num=2)
@@ -69,16 +71,17 @@ def main():
     while True:
         display.fill(BLACK)
         event.update(pygame.event.get(), player, obstacle_list)
-        world_scroll = player.world_scroll
 
-        display.blit(player.image, (player.x, player.y))# - player.image_height))  #After moving, reload the image at new position
+        display.blit(player.image, player.rect) # draw player
         floor.draw()
+    
+        timer.render(100, 100)
 
         # draw all Obstacles in obstacle_list
         for obst in obstacle_list:
             # Draw the finish line as a vertical white line
-            level.drawFinish(end_coord, world_scroll)
-            obst.update(world_scroll)
+            level.drawFinish(end_coord, player.world_scroll)
+            obst.update(player.world_scroll)
             obst.draw()
 
         player.jump_animation()
@@ -89,8 +92,8 @@ def main():
         print("\n###Debugging###")
         debug_statements(
             {"msg": "FPS", "args": round(clock.get_fps())},
-            {"msg": "World scroll", "args": world_scroll},
-            {"msg": "Distance to finish", "args": (end_coord[0] - world_scroll - 250)},
+            {"msg": "World scroll", "args": player.world_scroll},
+            {"msg": "Distance to finish", "args": round(end_coord[0] - player.world_scroll - 250, 2)},
         )
 
 if __name__ == "__main__":

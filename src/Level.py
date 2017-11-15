@@ -10,11 +10,8 @@ class Level(object):
         self.width = width
         self.height = height
         self.floor_height_percentage = floor_height_percentage
-
-
-# Here we want to store a list of Obstacles.
-
-# Generate obstacles method.
+    
+    # Generate obstacles method.
     def generateObstacles(self, obstacle_num=10):
         obstacle_list = []
 
