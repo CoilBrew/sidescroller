@@ -35,6 +35,8 @@ class Event(object):
             
             # gravity
             if not(self.inXColumn(player.rect, obst.rect)) and player.rect.bottom < player.floor:
+                player.collisionRight = False
+                player.collisionLeft= False
                 player.jumpDown = True
 
         # jump
