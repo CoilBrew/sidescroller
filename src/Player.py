@@ -5,15 +5,14 @@ from functools import wraps
 
 class Player(object):
     """This defines the player"""
-    def __init__(self, startx, starty, left, right): # Constructor method
+    def __init__(self, startx, starty, floor_height): # Constructor method
         self.starty = starty
-        self.x = startx
-        self.y = starty
-        self.left = left
-        self.right = right
-
         self.image_height = 100
         self.image_length = 100
+        self.x = startx
+        self.y = starty - self.image_height
+        self.floor = floor_height
+
         self.velocity = 5# This modifies world scroll speed
         self.health = 100
         self.image = pygame.image.load('assets/burrito_man.png')
@@ -29,20 +28,27 @@ class Player(object):
         self.jumpedMaxHeight = 150 # Jumps to maximum of 100 pixels
 
         self.elevatedPlatform = False
+        self.collisionLeft = False
+        self.collisionRight = False
 
-    def move(self, direction, obstacles):
-        """Takes a character representing the direction of movement"""
-        key = pygame.key.get_pressed()
-        if direction == self.left and not(self.collideObstacleLeft(obstacles)):
+        self.rect = pygame.Rect(self.x, self.y, self.image_length, self.image_height)
+
+    def move(self, direction):
+        if direction == "left" and not(self.collisionLeft):
             self.world_scroll = self.world_scroll - self.velocity
-        elif direction == self.right and not(self.collideObstacleRight(obstacles)):
+        elif direction == "right" and not(self.collisionRight):
             self.world_scroll = self.world_scroll + self.velocity
-        elif direction == "jump":
-            if self.jumpDown == False:
-                self.jumpUp = True
+
+    def jump(self):
+        if self.jumpDown == False:
+            self.jumpUp = True
 
     def jump_animation(self):
         """Manages jump animation"""
+        if self.rect.bottom >= self.floor:
+            # Do not let the player fall through the floor
+            self.jumpDown = False
+
         if self.jumpUp == True:
             if self.jumpedHeight <= self.jumpedMaxHeight:
                 self.y = self.y - self.jumpRateUp
@@ -56,53 +62,5 @@ class Player(object):
                 self.jumpedHeight = self.jumpedHeight - self.jumpRateDown
             else:
                 self.jumpDown = False
+        self.rect.y = self.y
 
-    def updateVertices(self):
-        """A rectangle is a polygon with four vertices"""
-        v1 = (self.x, self.y)
-        v2 = (self.x, self.y - self.image_height)
-        v3 = (self.x + self.image_length, self.y - self.image_height)
-        v4 = (self.x + self.image_length, self.y)
-        self.vertices = {"bottom_left": v1, "top_left": v2, "top_right": v3, "bottom_right": v4}
-
-    def putOnObstacleFloor(self, obstacles):
-        yes = False
-        for obst in obstacles:
-            if (self.vertices["bottom_right"][0] - 50 > obst.vertices["bottom_left"][0] and 
-                self.vertices["bottom_right"][0] < obst.vertices["bottom_right"][0] and 
-                self.vertices["bottom_left"][1] <= obst.vertices["bottom_left"][1]):
-                self.elevatedPlatform = obst
-                yes = True
-            elif (self.vertices["bottom_left"][0] > obst.vertices["bottom_left"][0] and 
-                  self.vertices["bottom_left"][0] + 50 < obst.vertices["bottom_right"][0] and 
-                  self.vertices["bottom_left"][1] <= obst.vertices["bottom_left"][1]):
-                self.elevatedPlatform = obst
-                yes = True
-        if not(yes):
-            self.elevatedPlatform = False
-
-    def raiseToFloor(self):
-        if self.jumpUp or self.jumpDown:
-            return False
-        elif self.elevatedPlatform:
-            self.y = self.elevatedPlatform.vertices["top_left"][1] - self.image_height
-            return True
-        else: 
-            self.y = self.starty
-            return False
-
-    def collideObstacleRight(self, obstacles):
-        for obst in obstacles:
-            if (self.vertices["bottom_right"][0] >= obst.vertices["bottom_left"][0] and 
-                self.vertices["bottom_left"][0] < obst.vertices["bottom_left"][0] and 
-                self.vertices["bottom_right"][1] > obst.vertices["top_right"][1]):
-                return True
-        return False
-
-    def collideObstacleLeft(self, obstacles):
-        for obst in obstacles:
-            if (self.vertices["bottom_left"][0] <= obst.vertices["bottom_right"][0] and 
-                self.vertices["bottom_right"][0] > obst.vertices["bottom_right"][0] and 
-                self.vertices["bottom_left"][1] > obst.vertices["top_left"][1]):
-                return True
-        return False
