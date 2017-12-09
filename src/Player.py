@@ -39,6 +39,10 @@ class Player(object):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 #        self.rect = pygame.Rect(self.x, self.y, self.image_length, self.image_height)
 
+        self.vertical_a = 0 # Starts out as 0; can be increased by jumping
+        self.vertical_velocity = 0 # Starts out as 0; can be increased by the pull of gravity
+        self.jump_energy = (-5) # You need to eat burritos or something to get energy to jump (minus number beacuse we are jumping up, not down)
+
     def move(self, direction):
         if direction == "left" and not(self.collisionLeft):
             self.world_scroll = self.world_scroll - self.velocity
@@ -46,6 +50,18 @@ class Player(object):
             self.world_scroll = self.world_scroll + self.velocity
 
     def jump(self):
+        """When you jump, you are counteracting the pull of gravity by increasing your
+        upward acceleration/velocity"""
+        if self.jump_energy < 0:
+            # You need energy to be able to jump
+            self.vertical_a = self.jump_energy
+            # Whenever you jump, you lose that energy
+            self.jump_energy = self.jump_energy + 1
+        else:
+            # Reset acceleration and energy
+            self.vertical_a = 0
+            self.jump_energy = 5
+
         if self.jumpDown is False:
             self.jumpUp = True
 

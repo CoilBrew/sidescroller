@@ -13,9 +13,12 @@ class Floor(Level):
         self.floor_height = floor_height
         self.width = width
         self.height = height
-        #self.endpoint = self.levellength #inheritesd from the Level class?    # The endpoint of the floor, where the level ends :: (Int, Int)
         self.begin = (0, floor_height)
         self.end = (width, floor_height)
+
+        self.rect = pygame.Rect(0, self.floor_height, self.width, self.height)
+
+        self.vertical_a = (-9) # (m/s) - floor pushes you up
 
     def draw(self):
         line_width = 1 # Pixel
