@@ -62,7 +62,7 @@ def main():
     timer = Timer(display, GREEN, BLACK)
 
     # Generate obstacles with function in Level class
-    obstacle_list = level.generateObstacles(obstacle_num=2)
+    obstacle_list = level.generateObstacles(obstacle_num=4)
 
     # Work out where the finish line should be (300px after last obstacle)
     end_coord = level.createEnd(obstacle_list)
@@ -72,7 +72,8 @@ def main():
         display.fill(BLACK)
         event.update(pygame.event.get(), player, obstacle_list)
 
-        display.blit(player.image, player.rect) # draw player
+        pygame.draw.rect(display, RED, player.rect)
+#        display.blit(player.image, player.rect) # draw player
         floor.draw()
     
         timer.render(100, 100)
