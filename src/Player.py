@@ -30,7 +30,7 @@ class Player(object):
         self.jumpedHeight = 0
         self.jumpRateUp = 25
         self.jumpRateDown = 12
-        self.jumpedMaxHeight = 150 # Jumps to maximum of 150 pixels
+        self.jumpedMaxHeight = 15 # Jumps to maximum of 150 pixels
 
         self.jumpAttempt = False
 
@@ -43,7 +43,7 @@ class Player(object):
 
         self.vertical_a = 0 # Starts out as 0; can be increased by jumping
         self.vertical_velocity = 0 # Starts out as 0; can be increased by the pull of gravity
-        self.jump_energy = 150 # You need to eat burritos or something to get energy to jump
+        self.jump_potential = 15 # You need to eat burritos or something to get energy to jump
 
     def move(self, direction):
         if direction == "left" and not(self.collisionLeft):
@@ -54,22 +54,17 @@ class Player(object):
     def jump(self):
         """When you jump, you are counteracting the pull of gravity by increasing your
         upward acceleration/velocity"""
-        if self.jump_energy > 0:
-            # You need energy to be able to jump
-            self.vertical_a = self.jump_energy
+        if self.jump_potential > 0:
             # Whenever you jump, you lose that energy
-            self.jump_energy = self.jump_energy - 1
-            self.vertical_velocity = self.vertical_velocity - self.vertical_a
+            self.jump_potential = self.jump_potential - 1
         else:
             # Reset acceleration and energy
             self.vertical_a = 0
-            self.jump_energy = 150
+            self.jump_potential = 15
             self.jumpAttempt = False
         
         self.rect.y = self.y + self.vertical_velocity
 
-        if self.jumpDown is False:
-            self.jumpUp = True
 
 #    def jump_animation(self):
 #        """Manages jump animation"""

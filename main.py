@@ -80,8 +80,8 @@ def main():
             obst.update(player.world_scroll)
             obst.draw()
 
-        player.vertical_a = physics.calculate_gravitional_a(player, floor)
-        player.vertical_velocity = physics.calculate_v(player, floor)
+        player.vertical_a = physics.calculate_vertical_acceleration(player, floor)
+        player.vertical_velocity = physics.calculate_vertical_velocity(player, floor)
 
         # Update player y position
         player.rect.y = player.y + player.vertical_velocity
