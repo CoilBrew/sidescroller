@@ -34,7 +34,6 @@ class Physics(object):
         if self.on_obj(obj, floor):
             # If touching floor, dissipate velocity
             return 0
-        # Otherwise assume Newtonian mechanics are working as expected
-
+        
         return obj.vertical_velocity + self.calculate_vertical_acceleration(obj, floor)
 
