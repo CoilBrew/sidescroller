@@ -65,24 +65,3 @@ class Player(object):
         
         self.rect.y = self.y + self.vertical_velocity
 
-
-#    def jump_animation(self):
-#        """Manages jump animation"""
-#        if self.rect.bottom >= self.floor:
-#            # Do not let the player fall through the floor
-#            self.jumpDown = False
-#
-#        if self.jumpUp is True:
-#            if self.jumpedHeight <= self.jumpedMaxHeight:
-#                self.y = self.y - self.jumpRateUp
-#                self.jumpedHeight = self.jumpedHeight + self.jumpRateUp
-#            else:
-#                self.jumpUp = False
-#                self.jumpDown = True
-#        elif self.jumpDown is True:
-#            if self.jumpedHeight > 0:
-#                self.y = self.y + self.jumpRateDown
-#                self.jumpedHeight = self.jumpedHeight - self.jumpRateDown
-#            else:
-#                self.jumpDown = False
-#        self.rect.y = self.y
