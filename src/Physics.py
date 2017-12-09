@@ -10,9 +10,9 @@ class Physics(object):
         """Work out the gravitational pull on any object"""
         if self.on_floor(obj, floor):
             # If obj is touching the floor
-            return self.gravity_a + floor.vertical_a + obj.vertical_a
+            return self.gravity_a - floor.vertical_a - obj.vertical_a
         # Otherwise assume in free-fall
-        return self.gravity_a + obj.vertical_a
+        return self.gravity_a - obj.vertical_a
 
     def on_floor(self, obj, floor):
         """Work out if obj bottom is >= to floor top
@@ -27,5 +27,5 @@ class Physics(object):
             # If touching floor, dissipate velocity
             return 0
         # Otherwise assume Newtonian mechanics are working as expected
+        # and we add the acceleration of gravity on the object to its vertical velocity
         return obj.vertical_velocity + self.calculate_gravitional_a(obj, floor)
-

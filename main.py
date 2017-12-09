@@ -80,11 +80,10 @@ def main():
             obst.update(player.world_scroll)
             obst.draw()
 
-        va = physics.calculate_gravitional_a(player, floor)
-        v_velocity = physics.calculate_v(player, floor)
-        player.vertical_velocity = v_velocity
+        player.vertical_a = physics.calculate_gravitional_a(player, floor)
+        player.vertical_velocity = physics.calculate_v(player, floor)
 
-        player.jump_animation()
+#        player.jump_animation()
 
         pygame.display.update()
         clock.tick(60) # opt arg: limit framerate; otherwise, unlimited
@@ -94,8 +93,9 @@ def main():
             {"msg": "FPS", "args": round(clock.get_fps())},
             {"msg": "World scroll", "args": player.world_scroll},
             {"msg": "Distance to finish", "args": round(end_coord[0] - player.world_scroll - 250, 2)},
-            {"msg": "Vertical acceleration of player", "args": round(va, 2)},
-            {"msg": "Vertical velocity of player", "args": round(v_velocity, 2)},
+            {"msg": "Player touching floor", "args": physics.on_floor(player, floor)},
+            {"msg": "Vertical acceleration of player", "args": round(player.vertical_a, 2)},
+            {"msg": "Vertical velocity of player", "args": round(player.vertical_velocity, 2)},
         )
 
 if __name__ == "__main__":

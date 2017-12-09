@@ -18,7 +18,7 @@ class Floor(Level):
 
         self.rect = pygame.Rect(0, self.floor_height, self.width, self.height)
 
-        self.vertical_a = (-9) # (m/s) - floor pushes you up
+        self.vertical_a = 9 # (m/s) - floor pushes you up
 
     def draw(self):
         line_width = 1 # Pixel
