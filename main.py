@@ -83,6 +83,11 @@ def main():
         player.vertical_a = physics.calculate_gravitional_a(player, floor)
         player.vertical_velocity = physics.calculate_v(player, floor)
 
+        # Update player y position
+        player.rect.y = player.y + player.vertical_velocity
+        if player.jumpAttempt is True:
+            player.jump()
+
 #        player.jump_animation()
 
         pygame.display.update()
@@ -93,7 +98,7 @@ def main():
             {"msg": "FPS", "args": round(clock.get_fps())},
             {"msg": "World scroll", "args": player.world_scroll},
             {"msg": "Distance to finish", "args": round(end_coord[0] - player.world_scroll - 250, 2)},
-            {"msg": "Player touching floor", "args": physics.on_floor(player, floor)},
+            {"msg": "Player touching floor", "args": physics.on_obj(player, floor)},
             {"msg": "Vertical acceleration of player", "args": round(player.vertical_a, 2)},
             {"msg": "Vertical velocity of player", "args": round(player.vertical_velocity, 2)},
         )

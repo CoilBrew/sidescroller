@@ -8,22 +8,23 @@ class Physics(object):
 
     def calculate_gravitional_a(self, obj, floor):
         """Work out the gravitational pull on any object"""
-        if self.on_floor(obj, floor):
+        if self.on_obj(obj, floor):
             # If obj is touching the floor
             return self.gravity_a - floor.vertical_a - obj.vertical_a
         # Otherwise assume in free-fall
         return self.gravity_a - obj.vertical_a
 
-    def on_floor(self, obj, floor):
-        """Work out if obj bottom is >= to floor top
-        otherwise we assume player is in free-fall"""
-        if obj.rect.bottom >= floor.rect.top:
+    def on_obj(self, obj, target):
+        """Work out if obj bottom is >= than target object
+        top; otherwise we assume player is in free-fall
+        (i.e. there is nothing beneath it)"""
+        if obj.rect.bottom >= target.rect.top:
             return True
         return False
 
     def calculate_v(self, obj, floor):
         """Calculate velocity of object"""
-        if self.on_floor(obj, floor):
+        if self.on_obj(obj, floor):
             # If touching floor, dissipate velocity
             return 0
         # Otherwise assume Newtonian mechanics are working as expected

@@ -40,7 +40,7 @@ class Event(object):
 
         # jump
         if key[pygame.K_w] or key[pygame.K_SPACE]:
-            player.jump()
+            player.jumpAttempt = True
 
         # Exit
         for e in events:

@@ -32,6 +32,8 @@ class Player(object):
         self.jumpRateDown = 12
         self.jumpedMaxHeight = 150 # Jumps to maximum of 150 pixels
 
+        self.jumpAttempt = False
+
         self.elevatedPlatform = False
         self.collisionLeft = False
         self.collisionRight = False
@@ -41,7 +43,7 @@ class Player(object):
 
         self.vertical_a = 0 # Starts out as 0; can be increased by jumping
         self.vertical_velocity = 0 # Starts out as 0; can be increased by the pull of gravity
-        self.jump_energy = 15 # You need to eat burritos or something to get energy to jump
+        self.jump_energy = 150 # You need to eat burritos or something to get energy to jump
 
     def move(self, direction):
         if direction == "left" and not(self.collisionLeft):
@@ -61,10 +63,10 @@ class Player(object):
         else:
             # Reset acceleration and energy
             self.vertical_a = 0
-            self.jump_energy = 15
+            self.jump_energy = 150
+            self.jumpAttempt = False
         
-        self.y = self.y + self.vertical_velocity
-        self.rect.y = self.y
+        self.rect.y = self.y + self.vertical_velocity
 
         if self.jumpDown is False:
             self.jumpUp = True
