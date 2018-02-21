@@ -30,8 +30,8 @@ class Event(object):
             # jump
             if player.jumpDown and (self.inXColumn(player.rect, obst.rect)):
                 if player.rect.bottom <= obst.rect.top:
-                    player.jumpDown = False # stop jumping 
-            
+                    player.jumpDown = False # stop jumping
+
             # gravity
             if not(self.inXColumn(player.rect, obst.rect)) and player.rect.bottom < player.floor:
                 player.collisionRight = False
@@ -48,7 +48,7 @@ class Event(object):
                 pygame.quit()
                 sys.exit()
 
-    def beginningOfWorld(self, world_scroll):
+    def beginningOfWorld(world_scroll):
         """If the player is at point 0 of the world,
         then return true"""
         return world_scroll <= 0
@@ -60,6 +60,3 @@ class Event(object):
         if rect1.center[0] >= rect2.left and rect1.center[0] <= rect2.right:
             return True
         return False
-        
-
-
