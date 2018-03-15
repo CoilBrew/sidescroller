@@ -25,10 +25,13 @@ Run
 - Implement physics (improve how player movement is handled)
 - ~~Make world shift with player movement~~
 - ~~Create some assets (player, wall)~~
+- Collision detection
+- Create menu (start game, settings, quit)
+- Add music
+
+### v1.1
+
 - Write method for floor movement (at the same rate as player movement)
 - Write method for floor traps (triggered by player or environment)
 - Create background
 - Make background move
-- Collision detection
-- Create menu (start game, settings, quit)
-- Add music
