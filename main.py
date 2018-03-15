@@ -52,12 +52,12 @@ def main():
             SCREEN_HEIGHT,
             settings.floor_height_percentage
     )
-    
+
     timer = Timer(display, GREEN, BLACK)
-    
+
     display.fill(BLACK)
 
-    # Generate obstacles 
+    # Generate obstacles
     obstacle_list = level.generateObstacles(obstacle_num=4)
     # Work out where the finish line should be (300px after last obstacle)
     end_coord = level.createEnd(obstacle_list)
@@ -70,8 +70,8 @@ def main():
         pygame.draw.rect(display, RED, player.rect)
 #        display.blit(player.image, player.rect) # draw player
         floor.draw()
-    
-        timer.render(100, 100)
+
+        timer.render(100, 100, pygame.time.get_ticks())
 
         # draw all Obstacles in obstacle_list
         for obst in obstacle_list:
