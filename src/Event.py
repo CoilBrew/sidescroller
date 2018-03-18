@@ -48,7 +48,7 @@ class Event(object):
                 pygame.quit()
                 sys.exit()
 
-    def beginningOfWorld(world_scroll):
+    def beginningOfWorld(self, world_scroll):
         """If the player is at point 0 of the world,
         then return true"""
         return world_scroll <= 0
